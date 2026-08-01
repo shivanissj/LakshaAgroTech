@@ -8,6 +8,7 @@ import ProductsPage from "./ProductsPage";
 import TechshaPage from "./TechshaPage";
 import AboutPage from "./AboutPage";
 import ContactPage from "./ContactPage";
+import Header from "./Header";
 import foliarImg from "./assets/FoliarFertilizers.png";
 import micronutrientImg from "./assets/MicronutrientFertilizers.png";
 import npkImg from "./assets/NPKFertilizers.png";
@@ -19,7 +20,7 @@ import techshaBannerImg from "./assets/techsa.png";
 const categories = [
   { slug: "foliar", name: "Foliar Fertilizers", count: 6, image: foliarImg },
   { slug: "micronutrient", name: "Micronutrient Fertilizers", count: 2, image: micronutrientImg },
-  { slug: "npk", name: "NPK Fertilizers", count: 1, image: npkImg },
+  { slug: "npk", name: "NPK Fertilizers", count: 3, image: npkImg },
   { slug: "secondary", name: "Secondary Nutrient Fertilizers", count: 1, image: calciumImg },
 ];
 
@@ -124,102 +125,66 @@ function App() {
     window.history.back();
   };
 
-  if (page === "products") {
-    return <ProductsPage initialSlug={selectedSlug} onBack={goBackHome} />;
-  }
-
-  if (page === "techsha") {
-    return <TechshaPage onBack={goBackHome} />;
-  }
-
-  if (page === "about") {
-    return (
-      <AboutPage
-        onBack={goBackHome}
-        onGoToContact={() => navigateTo("contact")}
-      />
-    );
-  }
-
-  if (page === "contact") {
-    return (
-      <ContactPage
-        onBack={goBackHome}
-        onGoToAbout={() => navigateTo("about")}
-      />
-    );
-  }
-
-  const closeMenu = () => setMenuOpen(false);
-
   const goToProducts = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     navigateTo("products", null);
-    setMenuOpen(false);
   };
 
   const goToTechsha = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     navigateTo("techsha", null);
-    setMenuOpen(false);
   };
 
   const goToAbout = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     navigateTo("about", null);
-    setMenuOpen(false);
   };
 
   const goToContact = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     navigateTo("contact", null);
-    setMenuOpen(false);
   };
 
-  return (
-    <div className="site">
-      {/* ---------- HERO ---------- */}
-      <section
-        className="hero"
-        style={{
-          backgroundImage: `linear-gradient(to right, rgba(8,20,10,0.92) 0%, rgba(8,20,10,0.75) 30%, rgba(8,20,10,0.25) 55%, rgba(8,20,10,0.05) 75%), linear-gradient(to bottom, rgba(10,20,10,0.35), rgba(10,20,10,0.1) 35%, rgba(8,18,10,0.8) 100%), url(${heroImg})`,
-        }}
-      >
-        <header className="nav">
-          <div className="brand">
-            <img src={logoImg} alt="Laksha Agro Tech logo" className="brand-logo" />
-          </div>
+  const renderPage = () => {
+    if (page === "products") {
+      return <ProductsPage initialSlug={selectedSlug} onBack={goBackHome} navigateTo={navigateTo} />;
+    }
 
-          {menuOpen && <div className="nav-backdrop open" onClick={closeMenu} />}
+    if (page === "techsha") {
+      return <TechshaPage onBack={goBackHome} navigateTo={navigateTo} />;
+    }
 
-          <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-            {/* "active" is now driven by the current page instead of being
-                hardcoded on Home, so the correct link stays highlighted.
-                (Note: this nav only ever renders while page === "home",
-                since App() returns early for the other pages — see the
-                AboutPage/ProductsPage/etc. components for their own navs.) */}
-            <a href="#home" className={page === "home" ? "active" : ""} onClick={closeMenu}>Home</a>
-            <a href="#about" className={page === "about" ? "active" : ""} onClick={goToAbout}>About Us</a>
-            <a href="#products" className={page === "products" ? "active" : ""} onClick={goToProducts}>Products</a>
-            <a href="#solutions" onClick={closeMenu}>Solutions</a>
-            <a href="#contact" className={page === "contact" ? "active" : ""} onClick={goToContact}>Contact Us</a>
-          </nav>
+    if (page === "about") {
+      return (
+        <AboutPage
+          onBack={goBackHome}
+          onGoToContact={() => navigateTo("contact")}
+          navigateTo={navigateTo}
+        />
+      );
+    }
 
-          <a href="#contact" className="nav-cta" onClick={goToContact}>Contact details</a>
+    if (page === "contact") {
+      return (
+        <ContactPage
+          onBack={goBackHome}
+          onGoToAbout={() => navigateTo("about")}
+          navigateTo={navigateTo}
+        />
+      );
+    }
 
-          <button
-            className={`menu-toggle ${menuOpen ? "open" : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="hamburger-line line1"></span>
-            <span className="hamburger-line line2"></span>
-            <span className="hamburger-line line3"></span>
-          </button>
-        </header>
-
-        <div className="hero-body">
-          <div className="hero-copy">
+    return (
+      <>
+        {/* ---------- HERO ---------- */}
+        <section
+          className="hero"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(8,20,10,0.92) 0%, rgba(8,20,10,0.75) 30%, rgba(8,20,10,0.25) 55%, rgba(8,20,10,0.05) 75%), linear-gradient(to bottom, rgba(10,20,10,0.35), rgba(10,20,10,0.1) 35%, rgba(8,18,10,0.8) 100%), url(${heroImg})`,
+          }}
+        >
+          <div className="hero-body">
+            <div className="hero-copy">
             <h1 className="hero-fade hero-fade-1">
               <span className="accent-green">Smart Farming for a</span>
               <br />
@@ -262,30 +227,21 @@ function App() {
       {/* ---------- PRODUCT RANGE ---------- */}
       <section className="products" id="products">
         <h2 className="reveal reveal-up">Our Products for You</h2>
-        <div className="product-row">
-          <button className="scroll-btn" aria-label="Previous" onClick={() => scrollProducts(-1)}>‹</button>
-          <div className="product-track" ref={scrollRef}>
-            {categories.map((cat, i) => (
+        <div className="product-row marquee-container">
+          <div className="product-track-marquee">
+            {[...categories, ...categories, ...categories, ...categories].map((cat, i) => (
               <div
                 className="product-card reveal reveal-up reveal-stagger"
-                style={{ cursor: "pointer", "--reveal-delay": `${i * 0.12}s` }}
-                key={cat.slug}
+                style={{ cursor: "pointer", "--reveal-delay": `${(i % categories.length) * 0.12}s` }}
+                key={`${cat.slug}-${i}`}
                 onClick={() => navigateTo("products", cat.slug)}
               >
                 <div className="product-img-wrap">
                   <img src={cat.image} alt={cat.name} className="product-img" />
                 </div>
-                <p className="product-name">{cat.name}</p>
-                <p className="product-category">{cat.count} Product{cat.count > 1 ? "s" : ""}</p>
               </div>
             ))}
           </div>
-          <button className="scroll-btn" aria-label="Next" onClick={() => scrollProducts(1)}>›</button>
-        </div>
-        <div className="dots">
-          <span className="dot active" />
-          <span className="dot" />
-          <span className="dot" />
         </div>
       </section>
 
@@ -331,32 +287,74 @@ function App() {
         </div>
       </section>
 
-      {/* ---------- FOOTER ---------- */}
-      <footer
-        className="footer reveal reveal-up"
-        id="contact"
-        style={{
-          backgroundImage: `linear-gradient(rgba(6,16,8,0.5), rgba(6,16,8,0.6)), url(${footerImg})`,
-        }}
+      </>
+    );
+  };
+
+  return (
+    <div className="site">
+      <Header page={page} navigateTo={navigateTo} />
+      {renderPage()}
+      
+      {/* ==================== GLOBAL FOOTER (BANNER STYLE) ==================== */}
+      <section 
+        className="global-footer-container"
+        style={{ backgroundImage: `url(${footerImg})`, backgroundColor: '#182b1a' }}
       >
-        <div className="footer-brand">
-          <img src={logoImg} alt="Laksha Agro Tech logo" className="brand-logo footer-logo" />
+        <div className="global-footer-overlay"></div>
+        
+        <div className="global-footer-card">
+          <div className="global-footer-content">
+            <div className="global-footer-brand">
+              <img src={logoImg} alt="Laksha Agro Tech" className="global-footer-logo" />
+            </div>
+
+            <div className="global-footer-links-col">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><span className="global-leaf">🌿</span><a href="#home" onClick={(e) => { e.preventDefault(); navigateTo("home"); }}>Home</a></li>
+                <li><span className="global-leaf">🌿</span><a href="#about" onClick={goToAbout}>About Us</a></li>
+                <li><span className="global-leaf">🌿</span><a href="#products" onClick={goToProducts}>Products</a></li>
+                <li><span className="global-leaf">🌿</span><a href="#solutions" onClick={(e) => { e.preventDefault(); navigateTo("home"); setTimeout(() => window.location.hash = "solutions", 100); }}>Solutions</a></li>
+                <li><span className="global-leaf">🌿</span><a href="#manufacturing" onClick={goToTechsha}>Manufacturing</a></li>
+              </ul>
+            </div>
+
+            <div className="global-footer-contact-col">
+              <h4>Contact</h4>
+              <div className="global-footer-contact-list">
+                <p>
+                  <span className="global-contact-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  </span> 
+                  +91 919600320783
+                </p>
+                <p>
+                  <span className="global-contact-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                  </span> 
+                  lakshaagrotech.com
+                </p>
+                <p>
+                  <span className="global-contact-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  </span> 
+                  lakshaagrotechsales@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="footer-col">
-          <h4>Quick Links</h4>
-          <a href="#home"><span className="link-icon">🌿</span>Home</a>
-          <a href="#about" onClick={goToAbout}><span className="link-icon">🌿</span>About Us</a>
-          <a href="#products" onClick={goToProducts}><span className="link-icon">🌿</span>Products</a>
-          <a href="#solutions"><span className="link-icon">🌿</span>Solutions</a>
-          <a href="#manufacturing" onClick={goToTechsha}><span className="link-icon">🌿</span>Manufacturing</a>
+        
+        <div className="global-footer-bottom">
+          <p>Copyright © 2025 Laksha Agro Tech. All rights reserved.</p>
+          <div className="global-footer-legal">
+            <a href="#">Term of use</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+          </div>
         </div>
-        <div className="footer-col">
-          <h4>Contact</h4>
-          <p>+91 919600320783 </p>
-          <p>lakshaagrotech.com</p>
-          <p>lakshaagrotechsales@gmail.com </p>
-        </div>
-      </footer>
+      </section>
     </div>
   );
 }

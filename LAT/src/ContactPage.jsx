@@ -1,12 +1,11 @@
 import { useState } from "react";
 import "./ContactPage.css";
 
-// Images ah correct-a import panniyachu
 import navbarImg from "./assets/navbar.jpg"; 
-import footerBgImg from "./assets/Footer.png"; // Intha image unga assets folder-la irukkanum
+import footerBgImg from "./assets/Footer.png"; 
 import logoImg from "./assets/logo.png"; 
-
-function ContactPage({ onBack, onGoToAbout }) {
+import Header from "./Header";
+function ContactPage({ onBack, onGoToAbout, navigateTo }) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -47,33 +46,6 @@ function ContactPage({ onBack, onGoToAbout }) {
           <div className="cp-hero-bg" style={{ background: "#1a3a22" }} />
         )}
         <div className="cp-hero-overlay" />
-
-        <header className="cp-nav">
-          <button className="cp-brand" onClick={onBack}>
-            {logoImg ? (
-              <img src={logoImg} alt="Laksha Agro Tech Logo" className="cp-nav-logo" />
-            ) : (
-              <span className="cp-brand-text">Laksha Agro Tech</span>
-            )}
-          </button>
-
-          <nav className={`cp-nav-links ${menuOpen ? "open" : ""}`}>
-            <a href="#home" onClick={(e) => { e.preventDefault(); onBack(); setMenuOpen(false); }}>Home</a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); onGoToAbout && onGoToAbout(); setMenuOpen(false); }}>About Us</a>
-            <a href="#products">Products</a>
-            <a href="#solutions">Solutions</a>
-            <a href="#contact" className="active">Contact Us</a>
-          </nav>
-
-          <div className="cp-nav-right">
-            <a href="tel:+919600320783" className="cp-nav-cta">Call Now</a>
-            <button className="cp-hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
-              <span />
-              <span />
-              <span />
-            </button>
-          </div>
-        </header>
 
         <div className="cp-hero-content">
           <h1>Contact us</h1>
@@ -183,53 +155,6 @@ function ContactPage({ onBack, onGoToAbout }) {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </section>
-
-      {/* ==================== NEW FOOTER DESIGN ==================== */}
-      <section className="cp-footer-container">
-        <div 
-          className="cp-footer-card" 
-          style={{ backgroundImage: footerBgImg ? `url(${footerBgImg})` : 'none', backgroundColor: '#182b1a' }}
-        >
-          <div className="cp-footer-overlay"></div>
-          
-          <div className="cp-footer-content">
-            <div className="cp-footer-brand">
-              {logoImg ? (
-                <img src={logoImg} alt="Laksha Agro Tech" className="cp-footer-logo" />
-              ) : (
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px" }}>Laksha Agro Tech</h2>
-              )}
-            </div>
-
-            <div className="cp-footer-links-col">
-              <h4>Quick Links</h4>
-              <ul>
-                <li><span className="cp-leaf">🌿</span><a href="#home">Home</a></li>
-                <li><span className="cp-leaf">🌿</span><a href="#about">About Us</a></li>
-                <li><span className="cp-leaf">🌿</span><a href="#products">Products</a></li>
-                <li><span className="cp-leaf">🌿</span><a href="#solutions">Solutions</a></li>
-                <li><span className="cp-leaf">🌿</span><a href="#manufacturing">Manufacturing</a></li>
-              </ul>
-            </div>
-
-            <div className="cp-footer-contact-col">
-              <h4>Contact</h4>
-              <p>+91 919600320783</p>
-              <p>lakshaagrotech.com</p>
-              <p>lakshaagrotechsales@gmail.com</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <div className="cp-footer-bottom">
-        <p>Copyright © 2025 Laksha Agro Tech. All rights reserved.</p>
-        <div className="cp-footer-legal">
-          <a href="#">Term of use</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Cookie Policy</a>
-        </div>
-      </div>
 
     </div>
   );

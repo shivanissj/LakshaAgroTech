@@ -13,6 +13,7 @@ import about3 from "./assets/about3.jpg";
 import about4 from "./assets/about4.jpg";
 import about5 from "./assets/about5.jpg";
 import about6 from "./assets/about6.jpg";
+import Header from "./Header";
 
 // Mapping the 6 images to the 7 available slots on the page
 const heroBg = about4;      // Wide landscape for background
@@ -24,10 +25,10 @@ const gal3 = about6;        // Gallery standard image
 const gal4 = about4;        // Reusing about4 for the wide gallery slot (only 6 photos for 7 slots)
 
 const values = [
-  { icon: "🌿", title: "Sustainable Practices", desc: "Eco-friendly formulations protecting long-term soil health." },
-  { icon: "🧪", title: "Scientific Formula", desc: "Every product is backed by research for real field results." },
-  { icon: "🛡️", title: "Quality Assured", desc: "Strict quality checks from raw material to final pack." },
-  { icon: "🎧", title: "Farmer Support", desc: "Expert guidance to help choose and apply the right products." },
+  { icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>, title: "Sustainable Practices", desc: "Eco-friendly formulations protecting long-term soil health." },
+  { icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>, title: "Scientific Formula", desc: "Every product is backed by research for real field results." },
+  { icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, title: "Quality Assured", desc: "Strict quality checks from raw material to final pack." },
+  { icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>, title: "Farmer Support", desc: "Expert guidance to help choose and apply the right products." },
 ];
 
 const stats = [
@@ -37,7 +38,7 @@ const stats = [
   { value: "50+", label: "Distributors" },
 ];
 
-function AboutPage({ onBack, onGoToContact }) {
+function AboutPage({ onBack, onGoToContact, navigateTo }) {
   useEffect(() => {
     const revealEls = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver(
@@ -68,36 +69,12 @@ function AboutPage({ onBack, onGoToContact }) {
 
   return (
     <div className="about-page">
-      {/* ---------- NAV ---------- */}
-      {/* NOTE: the dark green solid bar behind Home/About Us/Products/Contact
-          is set in AboutPage.css (likely a `background` or
-          `background-color` rule on `.ap-nav`). I don't have that file yet,
-          so as a quick fix I'm overriding it here inline to fully transparent.
-          Send AboutPage.css and I can remove this inline override and fix
-          it properly at the source instead. */}
-      <header className="ap-nav" style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none" }}>
-        <button className="ap-brand" onClick={onBack}>
-          {renderImage(logoImg, "Laksha Agro Tech logo", "ap-brand-logo")}
-        </button>
-        <nav className="ap-nav-links">
-          <a href="#home" onClick={(e) => { e.preventDefault(); onBack(); }}>Home</a>
-          <a href="#about" className="active">About Us</a>
-          <a href="#products">Products</a>
-          <a href="#contact" onClick={(e) => { e.preventDefault(); onGoToContact && onGoToContact(); }}>
-            Contact Us
-          </a>
-        </nav>
-        <button className="ap-nav-cta" onClick={() => onGoToContact && onGoToContact()}>
-          📞 Get in Touch
-        </button>
-      </header>
 
       {/* ---------- HERO SECTION WITH BG IMAGE ---------- */}
       <section className="ap-hero-modern">
         {heroBg && <img src={heroBg} alt="Farm background" className="ap-hero-bg" />}
         <div className="ap-hero-overlay"></div>
         <div className="ap-hero-content">
-          <span className="ap-badge reveal reveal-up">WHO WE ARE</span>
           <h1 className="reveal reveal-up">
             Nourishing Roots, <br/><span className="ap-accent">Growing Futures.</span>
           </h1>

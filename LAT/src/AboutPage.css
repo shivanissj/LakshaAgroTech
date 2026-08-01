@@ -205,8 +205,8 @@
   margin: 0 auto;
 }
 .ap-card-modern {
-  background: rgba(126, 217, 87, 0.03);
-  border: 1px solid rgba(126, 217, 87, 0.1);
+  background: rgba(126, 217, 87, 0.1);
+  border: 1px solid rgba(126, 217, 87, 0.25);
   padding: 40px 30px;
   border-radius: 20px;
   text-align: center;
@@ -214,15 +214,14 @@
 }
 .ap-card-modern:hover {
   transform: translateY(-10px);
-  background: rgba(126, 217, 87, 0.08);
-  border-color: rgba(126, 217, 87, 0.3);
+  background: rgba(126, 217, 87, 0.15);
+  border-color: rgba(126, 217, 87, 0.4);
 }
 .ap-card-icon {
-  font-size: 35px;
   width: 70px;
   height: 70px;
   margin: 0 auto 20px;
-  background: rgba(0,0,0,0.2);
+  background: rgba(126, 217, 87, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,16 +255,13 @@
 
 /* ---------- STATS BANNER ---------- */
 .ap-stats-banner {
-  background: linear-gradient(135deg, #0e2a14, #08140a);
-  border-top: 1px solid rgba(126,217,87,0.1);
-  border-bottom: 1px solid rgba(126,217,87,0.1);
+  background: transparent;
   padding: 60px 5%;
 }
 .ap-stats-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -282,9 +278,9 @@
 /* ---------- CTA ---------- */
 .ap-cta-modern { padding: 100px 5%; display: flex; justify-content: center; }
 .ap-cta-box {
-  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%230c1f10" /><circle cx="50" cy="50" r="40" fill="none" stroke="%237ed957" stroke-opacity="0.05" stroke-width="2"/></svg>') center/cover;
-  background-color: #0c1f10;
-  border: 1px solid rgba(126, 217, 87, 0.2);
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%23132e18" /><circle cx="50" cy="50" r="40" fill="none" stroke="%237ed957" stroke-opacity="0.15" stroke-width="2"/></svg>') center/cover;
+  background-color: #132e18;
+  border: 1px solid rgba(126, 217, 87, 0.35);
   border-radius: 24px;
   padding: 60px 40px;
   text-align: center;
@@ -338,9 +334,15 @@
 
 @media (max-width: 768px) {
   .ap-nav-links { display: none; }
+  .ap-stats-container { grid-template-columns: repeat(2, 1fr); gap: 30px 10px; }
+  .ap-stat-val { font-size: 2.2rem; }
+  .ap-stat-lbl { font-size: 11px; }
   .ap-hero-content h1 { font-size: 2.2rem; }
+  .ap-card-modern { padding: 25px 20px; border-radius: 16px; }
+  .ap-card-icon { width: 50px; height: 50px; margin-bottom: 15px; }
+  .ap-card-icon svg { width: 24px; height: 24px; }
   .img-main { width: 85%; height: 300px; }
   .img-overlap { width: 65%; height: 220px; }
-  .ap-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
+  .ap-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 160px; }
   .gal-tall { grid-row: span 1; }
 }

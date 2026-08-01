@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import "./TechshaPage.css";
 import logoImg from "./assets/logo.png";
+import Header from "./Header";
 import techshaHeroImg from "./assets/heroooo2.png";
 
 /* ------------------------------------------------------------------
@@ -142,7 +143,7 @@ function ProductModal({ product, onClose }) {
    COMPONENT
 ------------------------------------------------------------------ */
 
-export default function TechshaPage({ onBack }) {
+export default function TechshaPage({ onBack, navigateTo }) {
   const catRef = useRef(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -196,21 +197,6 @@ export default function TechshaPage({ onBack }) {
 
   return (
     <div className="tp-page">
-      {/* ---------- NAV ---------- */}
-      <header className="tp-nav">
-        <a href="#home" className="tp-brand" onClick={(e) => { e.preventDefault(); onBack(); }}>
-          <img src={logoImg} alt="Laksha Agro Tech logo" className="tp-brand-logo" />
-        </a>
-        <nav className="tp-nav-links">
-          <a href="#home" onClick={(e) => { e.preventDefault(); onBack(); }}>Home</a>
-          <a href="#about">About Us</a>
-          <a href="#products" className="active">Products</a>
-          <a href="#solutions">Solutions</a>
-          <a href="#manufacturing">Manufacturing</a>
-          <a href="#contact">Contact Us</a>
-        </nav>
-        <a href="#contact" className="tp-nav-cta">📞 Contact Us</a>
-      </header>
 
       {/* ---------- HERO ---------- */}
       <section className="tp-hero">

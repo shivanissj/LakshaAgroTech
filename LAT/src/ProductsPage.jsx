@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./ProductsPage.css";
 import logoImg from "./assets/logo.png";
+import Header from "./Header";
 import albertImg from "./assets/omex albert solution.png";
 import bio20GoldImg from "./assets/omex Bio20Gold.png";
 import calmaxGoldImg from "./assets/omex calmaxgold.png";
@@ -19,7 +20,7 @@ const categories = [
   {
     slug: "foliar",
     name: "Foliar Fertilizers",
-    icon: "🌿",
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>,
     desc: "High quality foliar nutrition for better growth, higher yield and improved crop health.",
     products: [
       {
@@ -63,7 +64,7 @@ const categories = [
   {
     slug: "micronutrient",
     name: "Micronutrient Fertilizers",
-    icon: "🧪",
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>,
     desc: "Targeted trace-element solutions to fix specific crop deficiencies.",
     products: [
       {
@@ -83,7 +84,7 @@ const categories = [
   {
     slug: "npk",
     name: "NPK Fertilizers",
-    icon: "🌱",
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>,
     desc: "Core nitrogen-phosphorus-potassium blends for overall crop health.",
     products: [
       {
@@ -109,7 +110,7 @@ const categories = [
   {
     slug: "secondary",
     name: "Secondary Nutrient Fertilizers",
-    icon: "Ca",
+    icon: <span style={{ color: "#7ed957", fontWeight: "bold", fontSize: "20px" }}>Ca</span>,
     desc: "Calcium, magnesium and sulphur based nutrition for stronger crops.",
     products: [
       {
@@ -122,7 +123,7 @@ const categories = [
   },
 ];
 
-function ProductsPage({ onBack, initialSlug }) {
+function ProductsPage({ onBack, initialSlug, navigateTo }) {
   const [activeSlug, setActiveSlug] = useState(initialSlug || categories[0].slug);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -131,22 +132,6 @@ function ProductsPage({ onBack, initialSlug }) {
 
   return (
     <div className="products-page">
-      <header className="nav">
-        <button className="brand brand-btn" onClick={onBack}>
-          <img src={logoImg} alt="Laksha Agro Tech logo" className="brand-logo" />
-        </button>
-        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <a href="#" onClick={(e) => { e.preventDefault(); onBack(); setMenuOpen(false); }}>Home</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>About Us</a>
-          <a href="#products" className="active" onClick={() => setMenuOpen(false)}>Products</a>
-          <a href="#solutions" onClick={() => setMenuOpen(false)}>Solutions</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact Us</a>
-        </nav>
-        <a href="#contact" className="nav-cta">Contact Details</a>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-          {menuOpen ? "✕" : "☰"}
-        </button>
-      </header>
 
       <div className="breadcrumb">
         <button onClick={onBack} className="crumb-home">⌂</button>
@@ -186,7 +171,6 @@ function ProductsPage({ onBack, initialSlug }) {
         {/* ---------- PRODUCT GRID ---------- */}
         <main className="grid-area">
           <div className="grid-heading">
-            <span className="grid-icon">{activeCategory.icon}</span>
             <div>
               <h1>{activeCategory.name}</h1>
               <p>{activeCategory.desc}</p>
@@ -219,37 +203,40 @@ function ProductsPage({ onBack, initialSlug }) {
             ))}
           </div>
 
-          <div className="trust-row">
-            <div className="trust-item">
-              <span>🛡️</span>
-              <div>
-                <h5>Quality Assured</h5>
-                <p>Tested &amp; trusted for best results</p>
-              </div>
-            </div>
-            <div className="trust-item">
-              <span>🌿</span>
-              <div>
-                <h5>Safe for Crops</h5>
-                <p>Eco-friendly &amp; safe for all crops</p>
-              </div>
-            </div>
-            <div className="trust-item">
-              <span>🧪</span>
-              <div>
-                <h5>Advanced Formula</h5>
-                <p>Scientifically formulated for better absorption</p>
-              </div>
-            </div>
-            <div className="trust-item">
-              <span>🎧</span>
-              <div>
-                <h5>Expert Support</h5>
-                <p>Get guidance from our experts</p>
-              </div>
+        </main>
+      </div>
+
+      <div className="trust-row-wrapper">
+        <div className="trust-row">
+          <div className="trust-item">
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <div>
+              <h5>Quality Assured</h5>
+              <p>Tested &amp; trusted for best results</p>
             </div>
           </div>
-        </main>
+          <div className="trust-item">
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
+            <div>
+              <h5>Safe for Crops</h5>
+              <p>Eco-friendly &amp; safe for all crops</p>
+            </div>
+          </div>
+          <div className="trust-item">
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg></span>
+            <div>
+              <h5>Advanced Formula</h5>
+              <p>Scientifically formulated for better absorption</p>
+            </div>
+          </div>
+          <div className="trust-item">
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+            <div>
+              <h5>Expert Support</h5>
+              <p>Get guidance from our experts</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ---------- DETAIL POPUP ---------- */}
