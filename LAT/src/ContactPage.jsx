@@ -55,56 +55,61 @@ function ContactPage({ onBack, onGoToAbout, navigateTo }) {
 
       {/* ==================== CONTACT CARDS ==================== */}
       <section className="cp-contact-section">
-        <div className="cp-layout">
-          {/* ---- INFO CARD ---- */}
-          <div className="cp-info">
-            <h2>Get in touch</h2>
-            <p className="cp-info-desc">
-              Have a question about our fertilizers, dosage or availability? Reach out to us directly.
-            </p>
-
-            <div className="cp-info-item">
-              <div className="cp-info-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div>
-                <p className="cp-info-label">Head Office</p>
-                <p>37/1, Laxmipuram, Old Bypass Rd., CHITTODE, Erode Dt., Tamilnadu - 638 102.</p>
-              </div>
+        <div className="cp-contact-split">
+          
+          <div className="cp-contact-left">
+            <div className="cp-contact-header">
+              <h2>Get in touch</h2>
+              <p className="cp-info-desc">
+                Have a question about our fertilizers, dosage or availability? Reach out to us directly.
+              </p>
             </div>
 
-            <div className="cp-info-item">
-              <div className="cp-info-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <div>
-                <p className="cp-info-label">Email Us</p>
-                <a href="mailto:lakshaagrotechsales@gmail.com">lakshaagrotechsales@gmail.com</a>
-              </div>
-            </div>
+            <div className="cp-action-col">
+              <a href="tel:+919600320783" className="cp-action-card">
+                <div className="cp-action-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                  </svg>
+                </div>
+                <div className="cp-action-text">
+                  <span className="cp-action-label">Call Us</span>
+                  <span className="cp-action-value">+91 919600320783</span>
+                </div>
+              </a>
 
-            <div className="cp-info-item">
-              <div className="cp-info-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                </svg>
-              </div>
-              <div>
-                <p className="cp-info-label">Call Us</p>
-                <a href="tel:+919600320783">Phone : +91 919600320783</a>
-              </div>
+              <a href="mailto:lakshaagrotechsales@gmail.com" className="cp-action-card">
+                <div className="cp-action-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div className="cp-action-text">
+                  <span className="cp-action-label">Email Us</span>
+                  <span className="cp-action-value">lakshaagrotech...</span>
+                </div>
+              </a>
+
+              <a href="#location" className="cp-action-card">
+                <div className="cp-action-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div className="cp-action-text">
+                  <span className="cp-action-label">Visit Us</span>
+                  <span className="cp-action-value">CHITTODE, Erode Dt.</span>
+                </div>
+              </a>
             </div>
           </div>
 
-          {/* ---- FORM CARD ---- */}
-          <div className="cp-form-card">
-            <form className="cp-form" onSubmit={handleSubmit}>
+          <div className="cp-contact-right cp-form-container">
+            {/* ---- FORM CARD ---- */}
+            <div className="cp-form-card">
+              <form className="cp-form" onSubmit={handleSubmit}>
               <h2>Send us a message</h2>
 
               <div className="cp-form-row">
@@ -139,6 +144,7 @@ function ContactPage({ onBack, onGoToAbout, navigateTo }) {
               </button>
             </form>
           </div>
+        </div>
         </div>
       </section>
 

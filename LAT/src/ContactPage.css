@@ -22,9 +22,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /* Applying the Curve effect */
-  border-bottom-left-radius: 50% 12%;
-  border-bottom-right-radius: 50% 12%;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
@@ -87,32 +84,82 @@
 /* ---------- HERO CONTENT ---------- */
 .cp-hero-content {
   position: relative; z-index: 2; text-align: center; padding: 60px 24px; max-width: 640px; margin: 0 auto;
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
 }
 .cp-hero-content h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); color: #fff; line-height: 1.2; margin-bottom: 14px; }
 .cp-hero-content p { color: #c3d1bd; font-size: 16px; line-height: 1.6; }
 
 /* ---------- CONTACT SECTION ---------- */
 .cp-contact-section { padding: 40px 64px 80px; position: relative; z-index: 3; margin-top: -30px; }
-.cp-layout { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
-
-/* ---------- INFO CARD ---------- */
-.cp-info {
-  flex: 1; min-width: 280px; max-width: 400px;
-  background: rgba(126, 217, 87, 0.03); border: 1px solid rgba(126, 217, 87, 0.15);
-  border-radius: 24px; padding: 40px 30px;
+.cp-contact-header {
   text-align: left;
+  max-width: 600px;
+  margin-bottom: 30px;
 }
-.cp-info h2 { font-size: 26px; color: #fff; margin-bottom: 10px; }
-.cp-info-desc { font-size: 14px; color: #a8b8a3; line-height: 1.7; margin-bottom: 30px; }
-.cp-info-item { display: flex; gap: 16px; margin-bottom: 24px; }
-.cp-info-icon {
+.cp-contact-header h2 { font-size: 28px; color: #fff; margin-bottom: 10px; }
+.cp-info-desc { font-size: 15px; color: #a8b8a3; line-height: 1.6; }
+
+/* ---------- CONTACT SPLIT LAYOUT ---------- */
+.cp-contact-split {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cp-contact-left {
+  flex: 1;
+  min-width: 320px;
+  max-width: 450px;
+}
+
+.cp-contact-right {
+  flex: 1.5;
+  min-width: 320px;
+}
+
+/* ---------- ACTION COLUMN ---------- */
+.cp-action-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.cp-action-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(126, 217, 87, 0.03); 
+  border: 1px solid rgba(126, 217, 87, 0.15);
+  border-radius: 16px;
+  padding: 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.cp-action-card:hover {
+  background: rgba(126, 217, 87, 0.08);
+  border-color: rgba(126, 217, 87, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.cp-action-icon {
   flex-shrink: 0; width: 45px; height: 45px; border-radius: 50%;
   background: rgba(126, 217, 87, 0.1); display: flex; align-items: center; justify-content: center;
   color: #7ed957; font-size: 18px;
 }
-.cp-info-label { font-size: 11px; color: #8fa389; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
-.cp-info-item a, .cp-info-item p { color: #dde8d8; font-size: 14px; text-decoration: none; line-height: 1.6; display: block; }
-.cp-info-item a:hover { color: #7ed957; }
+.cp-action-text {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.cp-action-label { font-size: 11px; color: #8fa389; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+.cp-action-value { color: #dde8d8; font-size: 15px; font-weight: 500; }
+
+.cp-form-container {
+  display: flex; justify-content: center;
+}
 
 /* ---------- FORM CARD ---------- */
 .cp-form-card {
@@ -286,13 +333,12 @@
   .cp-nav-cta { display: none; }
   
   .cp-hero-section {
-    border-bottom-left-radius: 50% 8%;
-    border-bottom-right-radius: 50% 8%;
+    /* No curved border on mobile either */
   }
 
-  .cp-layout { flex-direction: column; gap: 24px; }
-  .cp-info, .cp-form-card { max-width: 100%; width: 100%; padding: 30px 20px; }
+  .cp-form-card { max-width: 100%; width: 100%; padding: 30px 20px; }
   .cp-form-row { flex-direction: column; gap: 0; }
+  .cp-contact-left { max-width: 100%; }
   
   .cp-footer-content { padding: 40px 30px; }
 }
@@ -300,5 +346,5 @@
 @media (max-width: 480px) {
   .cp-hero-section { min-height: 420px; }
   .cp-hero-content h1 { font-size: 2rem; }
-  .cp-info h2, .cp-form h2 { font-size: 22px; }
+  .cp-contact-header h2, .cp-form h2 { font-size: 22px; }
 }

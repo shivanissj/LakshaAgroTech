@@ -23,8 +23,8 @@ import pottasiumImg from "./assets/pottasium.png";
 ------------------------------------------------------------------ */
 
 const categories = [
-  { icon: "💧", name: "Water Soluble Fertilizers", count: 12 },
-  { icon: "🧪", name: "Suspension Fertilizers", count: 6 },
+  { icon: "WS", name: "Water Soluble Fertilizers", count: 9 },
+  { icon: "SF", name: "Suspension Fertilizers", count: 6 },
   { icon: "Zn", name: "Micronutrient Fertilizers", count: 1 },
   { icon: "K", name: "Potassium Humate", count: 1 },
   { icon: "B", name: "Boron 20%", count: 1 },
@@ -143,9 +143,10 @@ function ProductModal({ product, onClose }) {
    COMPONENT
 ------------------------------------------------------------------ */
 
-export default function TechshaPage({ onBack, navigateTo }) {
+export default function TechshaPage({ navigateTo }) {
   const catRef = useRef(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [activeCat, setActiveCat] = useState("All");
 
   const scrollCats = (dir) => {
     if (catRef.current) catRef.current.scrollBy({ left: dir * 220, behavior: "smooth" });
@@ -173,7 +174,7 @@ export default function TechshaPage({ onBack, navigateTo }) {
 
   // ---------- SCROLL REVEAL ANIMATION ----------
   useEffect(() => {
-    const revealEls = document.querySelectorAll(".reveal");
+    const revealEls = document.querySelectorAll(".reveal:not(.in-view)");
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     const observer = new IntersectionObserver(
@@ -193,7 +194,7 @@ export default function TechshaPage({ onBack, navigateTo }) {
     revealEls.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [activeCat]);
 
   return (
     <div className="tp-page">
@@ -201,7 +202,6 @@ export default function TechshaPage({ onBack, navigateTo }) {
       {/* ---------- HERO ---------- */}
       <section className="tp-hero">
         <div className="tp-hero-copy reveal reveal-left">
-          <span className="tp-badge">PREMIUM FERTILIZER SOLUTIONS</span>
           <h1>
             Nourishing Crops.
             <br />
@@ -212,9 +212,9 @@ export default function TechshaPage({ onBack, navigateTo }) {
             types of crops and growth stages.
           </p>
           <div className="tp-hero-features">
-            <span>✅ 100% Water Soluble</span>
-            <span>✅ High Purity Premium Quality</span>
-            <span>✅ Better Yield &amp; Quality</span>
+            <span><span className="tp-green-icon">✔</span> 100% Water Soluble</span>
+            <span><span className="tp-green-icon">✔</span> High Purity Premium Quality</span>
+            <span><span className="tp-green-icon">✔</span> Better Yield &amp; Quality</span>
           </div>
           <div className="tp-hero-actions">
             <a href="#products" className="tp-btn tp-btn-primary">Explore Products →</a>
@@ -235,13 +235,13 @@ export default function TechshaPage({ onBack, navigateTo }) {
 
       {/* ---------- CATEGORY CAROUSEL ---------- */}
       <section className="tp-categories">
-        <button className="tp-scroll-btn" onClick={() => scrollCats(-1)} aria-label="Previous">‹</button>
+        <button className="tp-scroll-btn tp-scroll-left" onClick={() => scrollCats(-1)} aria-label="Previous">‹</button>
         <div className="tp-category-track" ref={catRef}>
           {categories.map((cat, i) => (
             <div
-              className="tp-category-card reveal reveal-up reveal-stagger"
-              style={{ "--reveal-delay": `${i * 0.1}s` }}
+              className={`tp-category-card ${activeCat === cat.name ? 'selected' : ''}`}
               key={cat.name}
+              onClick={() => setActiveCat(activeCat === cat.name ? "All" : cat.name)}
             >
               <span className="tp-category-icon">{cat.icon}</span>
               <p className="tp-category-name">{cat.name}</p>
@@ -249,13 +249,14 @@ export default function TechshaPage({ onBack, navigateTo }) {
             </div>
           ))}
         </div>
-        <button className="tp-scroll-btn" onClick={() => scrollCats(1)} aria-label="Next">›</button>
+        <button className="tp-scroll-btn tp-scroll-right" onClick={() => scrollCats(1)} aria-label="Next">›</button>
       </section>
 
       {/* ---------- WATER SOLUBLE FERTILIZERS ---------- */}
+      {(activeCat === "All" || activeCat === "Water Soluble Fertilizers") && (
       <section className="tp-section" id="products">
         <div className="tp-section-head reveal reveal-up">
-          <h2>🌿 WATER SOLUBLE FERTILIZERS</h2>
+          <h2>WATER SOLUBLE FERTILIZERS</h2>
           <a href="#all-water-soluble" className="tp-view-all">View All Products →</a>
         </div>
         <div className="tp-grid tp-grid-4">
@@ -275,7 +276,7 @@ export default function TechshaPage({ onBack, navigateTo }) {
               <h3>{item.grade}</h3>
               <p className="tp-card-npk">{item.npk}</p>
               <p className="tp-card-desc">{item.desc}</p>
-              <p className="tp-card-meta">💧 Foliar Spray &nbsp;•&nbsp; 💧 Fertigation</p>
+              <p className="tp-card-meta"><span className="tp-green-icon">✔</span> Foliar Spray &nbsp;•&nbsp; <span className="tp-green-icon">✔</span> Fertigation</p>
               <button className="tp-card-btn" onClick={() => openModal(item)}>
                 View Details
               </button>
@@ -283,11 +284,13 @@ export default function TechshaPage({ onBack, navigateTo }) {
           ))}
         </div>
       </section>
+      )}
 
       {/* ---------- SUSPENSION FERTILIZERS ---------- */}
+      {(activeCat === "All" || activeCat === "Suspension Fertilizers") && (
       <section className="tp-section tp-section-alt">
         <div className="tp-section-head reveal reveal-up">
-          <h2>🌿 SUSPENSION FERTILIZERS</h2>
+          <h2>SUSPENSION FERTILIZERS</h2>
           <a href="#all-suspension" className="tp-view-all">View All Products →</a>
         </div>
         <div className="tp-grid tp-grid-6">
@@ -315,14 +318,29 @@ export default function TechshaPage({ onBack, navigateTo }) {
         </div>
         <p className="tp-rate-line">
           <strong>Application Rate</strong> (All Suspension Fertilizers) &nbsp;
-          🌱 Foliar Spray: 4 – 7 gm / L &nbsp;&nbsp; 💧 Fertigation: 5 – 10 Kgs / Acre
+          <span className="tp-green-icon">✔</span> Foliar Spray: 4 – 7 gm / L &nbsp;&nbsp; <span className="tp-green-icon">✔</span> Fertigation: 5 – 10 Kgs / Acre
         </p>
       </section>
+      )}
 
       {/* ---------- MICRONUTRIENT / HUMATE / BORON CARDS ---------- */}
+      {(activeCat === "All" || activeCat === "Micronutrient Fertilizers" || activeCat === "Potassium Humate" || activeCat === "Boron 20%") && (
       <section className="tp-section">
+        <div className="tp-section-head reveal reveal-up">
+          <h2>
+            {activeCat === "All" ? "SPECIALTY PRODUCTS" : 
+             activeCat === "Micronutrient Fertilizers" ? "MICRONUTRIENT FERTILIZERS" : 
+             activeCat === "Potassium Humate" ? "POTASSIUM HUMATE" :
+             activeCat === "Boron 20%" ? "BORON 20%" : ""}
+          </h2>
+        </div>
         <div className="tp-grid tp-grid-3">
-          {microCards.map((c, i) => (
+          {microCards.filter(c => 
+            activeCat === "All" || 
+            (activeCat === "Micronutrient Fertilizers" && c.title === "GROWFERT") ||
+            (activeCat === "Potassium Humate" && c.subtitle.includes("Super Pottasium")) ||
+            (activeCat === "Boron 20%" && c.title.includes("Boron 20%"))
+          ).map((c, i) => (
             <div
               className="tp-info-card reveal reveal-up reveal-stagger"
               style={{ "--reveal-delay": `${i * 0.12}s` }}
@@ -356,10 +374,11 @@ export default function TechshaPage({ onBack, navigateTo }) {
           ))}
         </div>
       </section>
+      )}
 
       {/* ---------- QUICK NUTRIENT COMPARISON ---------- */}
       <section className="tp-section tp-section-alt">
-        <h2 className="tp-centered-heading reveal reveal-up">📊 QUICK NUTRIENT COMPARISON</h2>
+        <h2 className="tp-centered-heading reveal reveal-up">QUICK NUTRIENT COMPARISON</h2>
         <div className="tp-table-wrap reveal reveal-up">
           <table className="tp-table">
             <thead>
@@ -396,10 +415,10 @@ export default function TechshaPage({ onBack, navigateTo }) {
             <span>SPECIALITY&nbsp;&nbsp;SOLUBLE&nbsp;&nbsp;FERTILIZER</span>
           </div>
           <div className="tp-manufacturing-features">
-            <span>🌿 High Purity Raw Materials</span>
-            <span>⚙️ Advanced Technology</span>
-            <span>💧 100% Water Soluble</span>
-            <span>🌾 Better Yield &amp; Quality</span>
+            <span><span className="tp-green-icon">✔</span> High Purity Raw Materials</span>
+            <span><span className="tp-green-icon">✔</span> Advanced Technology</span>
+            <span><span className="tp-green-icon">✔</span> 100% Water Soluble</span>
+            <span><span className="tp-green-icon">✔</span> Better Yield &amp; Quality</span>
           </div>
         </div>
         <div className="tp-manufacturing-art reveal reveal-right">

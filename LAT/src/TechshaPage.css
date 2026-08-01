@@ -48,16 +48,15 @@
 }
 .tp-nav-cta:hover { background: rgba(126, 217, 87, 0.1); }
 
-/* ---------- HERO ---------- */
 .tp-hero {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: stretch;
+  justify-content: center;
   gap: 40px;
-  padding: 60px 64px;
-  flex-wrap: wrap;
+  padding: 140px 64px 60px;
+  flex-wrap: nowrap;
 }
-.tp-hero-copy { max-width: 560px; }
+.tp-hero-copy { max-width: 560px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
 
 .tp-badge {
   display: inline-block;
@@ -84,19 +83,20 @@
   font-size: 15px;
   line-height: 1.6;
   max-width: 440px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
 }
 
 .tp-hero-features {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 18px;
   margin-bottom: 28px;
   font-size: 13px;
   color: #dce8d8;
 }
 
-.tp-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.tp-hero-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
 .tp-btn {
   display: inline-flex;
@@ -116,7 +116,7 @@
 .tp-btn-dark { background: rgba(255, 255, 255, 0.06); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); }
 .tp-btn-outline { background: transparent; color: #7ed957; border: 1px solid rgba(126, 217, 87, 0.4); }
 
-.tp-hero-art { flex: 1; min-width: 300px; display: flex; justify-content: center; }
+.tp-hero-art { flex: 0 0 auto; min-width: 300px; display: flex; justify-content: center; align-items: stretch; }
 .tp-hero-bags { width: 55%; position: absolute; top: 10%; }
 .tp-hero-buckets { width: 60%; position: absolute; bottom: 8%; }
 
@@ -124,8 +124,10 @@
 .tp-categories {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   padding: 0 64px 50px;
+  width: 100%;
 }
 .tp-category-track {
   display: flex;
@@ -145,25 +147,31 @@
   border: 1px solid rgba(126, 217, 87, 0.2);
   border-radius: 16px;
   padding: 22px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.tp-category-card:hover { background: rgba(126, 217, 87, 0.1); transform: translateY(-3px); }
+.tp-category-card.selected {
+  background: rgba(126, 217, 87, 0.15);
+  border-color: #7ed957;
 }
 .tp-category-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: rgba(126, 217, 87, 0.12);
-  color: #a4d97a;
-  font-weight: 700;
-  font-size: 16px;
-  margin-bottom: 12px;
+  background: rgba(126, 217, 87, 0.1);
+  color: #7ed957;
+  font-size: 20px;
+  margin-bottom: 16px;
 }
-.tp-category-name { font-size: 13px; color: #eef2ec; margin-bottom: 4px; }
-.tp-category-count { font-size: 11px; color: #8fa389; }
+.tp-category-name { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+.tp-category-count { font-size: 11px; color: #a4d97a; }
 
 .tp-scroll-btn {
-  flex-shrink: 0;
+  display: none;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -172,6 +180,9 @@
   border-radius: 50%;
   cursor: pointer;
   font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 .tp-scroll-btn:hover { background: rgba(126, 217, 87, 0.2); border-color: #7ed957; }
 
@@ -341,9 +352,9 @@
 /* ---------- MANUFACTURING BANNER ---------- */
 .tp-manufacturing {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+  align-items: stretch;
+  justify-content: center;
+  gap: 60px;
   padding: 70px 64px;
   flex-wrap: wrap;
   background: linear-gradient(180deg, #10240f, #081a0c);
@@ -378,9 +389,11 @@
   color: #c3d1bd;
 }
 
-.tp-manufacturing-art { flex: 1; min-width: 280px; display: flex; justify-content: center; gap: 20px; }
-.tp-manufacturing-img { max-width: 220px; width: 100%; height: auto; }
+.tp-manufacturing-art { flex: 1; min-width: 280px; max-width: 500px; display: flex; align-items: stretch; }
+.tp-manufacturing-img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; max-width: none; }
 .tp-manufacturing-img-2 { max-width: 180px; }
+
+.tp-green-icon { color: #7ed957; margin-right: 6px; font-weight: bold; }
 
 /* ---------- FOOTER ---------- */
 .tp-footer {
@@ -433,11 +446,18 @@
 @media (max-width: 768px) {
   .tp-nav-links { display: none; }
   .tp-brand-logo { width: 60px; height: 60px; }
-  .tp-hero { flex-direction: column; text-align: center; }
-  .tp-hero-features { justify-content: center; }
+  .tp-hero { flex-direction: column; text-align: center; padding-top: 100px; }
+  .tp-hero-copy h1 { font-size: 2.2rem; }
+  .tp-hero-art { min-width: 250px; }
+  .tp-hero-ring { max-width: 100%; height: 300px; }
+  .tp-hero-features { flex-direction: column; align-items: center; gap: 12px; }
   .tp-hero-actions { justify-content: center; width: 100%; }
+  .tp-categories { justify-content: center; padding: 0 10px 50px; position: relative; }
+  .tp-scroll-btn { display: flex; position: absolute; top: 35%; transform: translateY(-50%); z-index: 10; }
+  .tp-scroll-left { left: 5px; }
+  .tp-scroll-right { right: 5px; }
   .tp-manufacturing { text-align: center; justify-content: center; }
-  .tp-manufacturing-features { justify-content: center; }
+  .tp-manufacturing-features { flex-direction: column; align-items: center; gap: 12px; }
 }
 
 /* ---------- HERO SHOWCASE IMAGE (final, no border/ring) ---------- */
@@ -446,7 +466,7 @@
   width: 100%;
   max-width: 480px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   border: none;
   background: none;
@@ -454,7 +474,8 @@
 
 .tp-hero-showcase {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 20px;
   display: block;
 }

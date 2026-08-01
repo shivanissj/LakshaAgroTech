@@ -77,10 +77,9 @@
   position: relative;
   min-height: 60vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   text-align: center;
-  padding: 80px 20px;
+  padding: 80px 20px 40px;
 }
 .ap-hero-bg {
   position: absolute;
@@ -98,6 +97,11 @@
   position: relative;
   z-index: 3;
   max-width: 800px;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .ap-badge {
   display: inline-block;
@@ -191,7 +195,7 @@
 /* ---------- VALUES SECTION ---------- */
 .ap-values-section {
   padding: 80px 5%;
-  background: rgba(255,255,255,0.015);
+  background: transparent;
 }
 .ap-values-header { text-align: center; margin-bottom: 50px; }
 .ap-values-header h2 { font-size: 2.2rem; margin-bottom: 10px; }
