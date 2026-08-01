@@ -12,7 +12,7 @@ import threeXImg from "./assets/omex 3x.png";
 import sequential1Img from "./assets/omex Sequential1.png";
 import dp98Img from "./assets/omex dp 98.png";
 import premiumImg from "./assets/omexpremium.png";
-import omex144800Img from "./assets/omex 14.48.00.png";
+import omex144800Img from "./assets/Omex 14.48.00.png";
 
 // ---- MOCK DATA: edit names/features here, add `image: yourImportedImg` per product when ready ----
 const categories = [

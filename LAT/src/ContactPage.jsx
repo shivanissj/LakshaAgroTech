@@ -3,7 +3,7 @@ import "./ContactPage.css";
 
 // Images ah correct-a import panniyachu
 import navbarImg from "./assets/navbar.jpg"; 
-import footerBgImg from "./assets/footer.png"; // Intha image unga assets folder-la irukkanum
+import footerBgImg from "./assets/Footer.png"; // Intha image unga assets folder-la irukkanum
 import logoImg from "./assets/logo.png"; 
 
 function ContactPage({ onBack, onGoToAbout }) {
