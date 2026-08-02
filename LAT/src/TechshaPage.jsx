@@ -158,7 +158,16 @@ export default function TechshaPage({ navigateTo }) {
   const [activeCat, setActiveCat] = useState("All");
 
   const scrollCats = (dir) => {
-    if (catRef.current) catRef.current.scrollBy({ left: dir * 220, behavior: "smooth" });
+    if (catRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = catRef.current;
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      
+      if (isMobile && dir === 1 && scrollLeft + clientWidth >= scrollWidth - 10) {
+        catRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        catRef.current.scrollBy({ left: dir * 220, behavior: "smooth" });
+      }
+    }
   };
 
   const openModal = (item) => setSelectedProduct(item);
