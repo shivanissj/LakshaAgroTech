@@ -16,6 +16,18 @@ import greenBagImg from "./assets/greenbag.png";
 import blueBagImg from "./assets/bluebag.png";
 import growfertImg from "./assets/growfert.png";
 import pottasiumImg from "./assets/pottasium.png";
+import t1 from "./assets/t1.png";
+import t2 from "./assets/t2.png";
+import t3 from "./assets/t3.png";
+import t4 from "./assets/t4.png";
+import t5 from "./assets/t5.png";
+import t6 from "./assets/t6.png";
+import t7 from "./assets/t7.png";
+import t8 from "./assets/t8.png";
+import t9 from "./assets/t9.png";
+import t10 from "./assets/t10.png";
+import t11 from "./assets/t11.png";
+import t12 from "./assets/t12.png";
 
 /* ------------------------------------------------------------------
    DATA
@@ -31,15 +43,15 @@ const categories = [
 ];
 
 const waterSoluble = [
-  { grade: "20-20-20 + TE", npk: "N 20% | P 20% | K 20%", desc: "Balanced NPK for all crops & growth stages.", img: blueBagImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "12-12-36 + TE", npk: "N 12% | P 12% | K 36%", desc: "High Potassium formula for fruit setting & quality.", img: greenBagImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "15-05-30 + TE", npk: "N 15% | P 05% | K 30%", desc: "For fruit set & maturity. Improves size & sweetness.", img: blueBagImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "21-21-21 + TE", npk: "N 21% | P 21% | K 21%", desc: "Balanced multipurpose fertilizer for all crops & stages.", img: greenBagImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "13-40-13", npk: "N 13% | P 40% | K 13%", desc: "Water soluble fertilizer for better yield & growth.", img: orangePackImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "19-19-19", npk: "N 19% | P 19% | K 19%", desc: "Balanced NPK for maximum yield in high production.", img: greenBagImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "MAP 12-61-00", npk: "N 12% | P 61% | K 00%", desc: "Mono Ammonium Phosphate for robust root development.", img: orangePackImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "MKP 00-52-34", npk: "P 52% | K 34%", desc: "Mono Potassium Phosphate for flowering & fruiting.", img: blueBagImg, tag: "WATER SOLUBLE FERTILIZER" },
-  { grade: "Calcium Nitrate", npk: "N 15% | Ca 19%", desc: "Multi-purpose fertilizer, treats calcium & nitrogen deficiency.", img: pinkBagImg, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "20-20-20 + TE", npk: "N 20% | P 20% | K 20%", desc: "Balanced NPK for all crops & growth stages.", img: t6, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "12-12-36 + TE", npk: "N 12% | P 12% | K 36%", desc: "High Potassium formula for fruit setting & quality.", img: t3, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "15-05-30 + TE", npk: "N 15% | P 05% | K 30%", desc: "For fruit set & maturity. Improves size & sweetness.", img: t1, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "21-21-21 + TE", npk: "N 21% | P 21% | K 21%", desc: "Balanced multipurpose fertilizer for all crops & stages.", img: t4, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "MAP 13-40-13", npk: "N 13% | P 40% | K 13%", desc: "Water soluble fertilizer for better yield & growth.", img: t7, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "19-19-19 + TE", npk: "N 19% | P 19% | K 19%", desc: "Balanced NPK for maximum yield in high production.", img: t5, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "MAP 12-61-00", npk: "N 12% | P 61% | K 00%", desc: "Mono Ammonium Phosphate for robust root development.", img: t8, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "MKP 00-52-34", npk: "P 52% | K 34%", desc: "Mono Potassium Phosphate for flowering & fruiting.", img: t2, tag: "WATER SOLUBLE FERTILIZER" },
+  { grade: "Calcium Nitrate", npk: "N 15% | Ca 19%", desc: "Multi-purpose fertilizer, treats calcium & nitrogen deficiency.", img: t9, tag: "WATER SOLUBLE FERTILIZER" },
 ];
 
 const suspensionFertilizers = [
@@ -58,7 +70,7 @@ const microCards = [
     desc:
       "Mix micro nutrient fertilizer for foliar and drip irrigation. Contains six micro nutrients like (Zn, Fe, Mg, Cu, B, Mo). It is highly water soluble.",
     extra: "Dosage: 5-10 Kg Field crops, 10-20 Kg Horti and plantation crops",
-    image: growfertImg,
+    image: t10,
   },
   {
     title: "TECHSHA",
@@ -67,7 +79,7 @@ const microCards = [
       "It is a concentrate Humi Acid Substance and 100% water soluble plant growth stimulant and soil conditioner.",
     extra:
       "Foliar Spray: 1 to 2 gm in 1 Litre water  •  Drip Irrigation: 2 to 3 Kgs per Acre  •  Soil Application: 3 to 5 Kgs per Acre",
-    image: pottasiumImg,
+    image: t11,
   },
   {
     title: "TECHSHA (Boron 20%)",
@@ -75,7 +87,7 @@ const microCards = [
     desc: "",
     extra:
       "Boron (as B), Min: 20.0%  •  Water Insoluble, Max: 1.0%  •  Lead (as Pb), Min: 0.003%  •  Cadmium (as Cd), Min: 0.0025%  •  Arsenic (as As), Min: 0.01%",
-    image: null,
+    image: t12,
   },
 ];
 

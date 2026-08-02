@@ -14,24 +14,32 @@ import sequential1Img from "./assets/omex Sequential1.png";
 import dp98Img from "./assets/omex dp 98.png";
 import premiumImg from "./assets/omexpremium.png";
 import omex144800Img from "./assets/Omex 14.48.00.png";
+import c1 from "./assets/c1.png";
+import c2 from "./assets/c2.png";
+import c3 from "./assets/c3.png";
+import c4 from "./assets/c4.png";
+import c5 from "./assets/c5.png";
+import c6 from "./assets/c6.png";
+// import c7 from "./assets/c7.png";
+
 
 // ---- MOCK DATA: edit names/features here, add `image: yourImportedImg` per product when ready ----
 const categories = [
   {
     slug: "foliar",
     name: "Foliar Fertilizers",
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>,
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg>,
     desc: "High quality foliar nutrition for better growth, higher yield and improved crop health.",
     products: [
       {
         name: "Omex Bio-20",
-        image: bio20GoldImg,
+        image: c1,
         features: ["Enhances plant growth", "Improves stress tolerance", "Promotes natural plant health"],
         desc: "A concentrated, premium foliar nutrition solution and biostimulant engineered to maximize crop yields and help crops recover rapidly from environmental stress.",
       },
       {
         name: "Omex Premium",
-        image: premiumImg,
+        image: c2,
         features: ["Premium quality formula", "Improves flowering and fruit set", "Increases yield and quality"],
         desc: "A premium-grade foliar formulation offering enhanced nutrient uptake for demanding, high-value crops.",
       },
@@ -43,7 +51,7 @@ const categories = [
       },
       {
         name: "Omex Albert Solution",
-        image: albertImg,
+        image: c3,
         features: ["Balanced foliar nutrition", "Supports overall plant health", "Improves crop performance"],
         desc: "A balanced multi-nutrient foliar feed designed to correct deficiencies quickly and support steady, healthy crop growth.",
       },
@@ -55,7 +63,7 @@ const categories = [
       },
       {
         name: "Omex K41",
-        image: k41Img,
+        image: c4,
         features: ["High Potassium formula", "Improves fruit size and quality", "Enhances plant strength"],
         desc: "A potassium-rich liquid feed formulated to strengthen crops during flowering and fruiting stages.",
       },
@@ -64,7 +72,7 @@ const categories = [
   {
     slug: "micronutrient",
     name: "Micronutrient Fertilizers",
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>,
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31" /><path d="M14 9.3V1.99" /><path d="M8.5 2h7" /><path d="M14 9.3a6.5 6.5 0 1 1-4 0" /><path d="M5.52 16h12.96" /></svg>,
     desc: "Targeted trace-element solutions to fix specific crop deficiencies.",
     products: [
       {
@@ -84,12 +92,12 @@ const categories = [
   {
     slug: "npk",
     name: "NPK Fertilizers",
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>,
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg>,
     desc: "Core nitrogen-phosphorus-potassium blends for overall crop health.",
     products: [
       {
         name: "Omex 14.48.00",
-        image: omex144800Img,
+        image: c5,
         features: ["High phosphorus starter", "Boosts root development", "Supports early establishment"],
         desc: "A high-phosphorus starter formulation ideal for root development and early crop establishment.",
       },
@@ -115,7 +123,7 @@ const categories = [
     products: [
       {
         name: "Omex CalMax Gold",
-        image: calmaxGoldImg,
+        image: c6,
         features: ["Advanced calcium bio-stimulant", "Strengthens cell walls", "Improves fruit quality"],
         desc: "A next-generation, water-soluble suspension foliar fertilizer and advanced calcium bio-stimulant providing a balanced intake of calcium.",
       },
@@ -207,28 +215,28 @@ function ProductsPage({ onBack, initialSlug, navigateTo }) {
       <div className="trust-row-wrapper">
         <div className="trust-row">
           <div className="trust-item">
-            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg></span>
             <div>
               <h5>Quality Assured</h5>
               <p>Tested &amp; trusted for best results</p>
             </div>
           </div>
           <div className="trust-item">
-            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg></span>
             <div>
               <h5>Safe for Crops</h5>
               <p>Eco-friendly &amp; safe for all crops</p>
             </div>
           </div>
           <div className="trust-item">
-            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg></span>
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31" /><path d="M14 9.3V1.99" /><path d="M8.5 2h7" /><path d="M14 9.3a6.5 6.5 0 1 1-4 0" /><path d="M5.52 16h12.96" /></svg></span>
             <div>
               <h5>Advanced Formula</h5>
               <p>Scientifically formulated for better absorption</p>
             </div>
           </div>
           <div className="trust-item">
-            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" /></svg></span>
             <div>
               <h5>Expert Support</h5>
               <p>Get guidance from our experts</p>

@@ -484,7 +484,7 @@ function App() {
                   </span>
                   lakshaagrotechsales@gmail.com
                 </a>
-                <a href="https://maps.google.com/?q=CHITTODE, Erode Dt., Tamilnadu - 638 102" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.google.com/maps/place/Laksha+Agro+Tech/@11.397954,77.664806,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba9690037cf9751:0x2bf9b98109891325!8m2!3d11.397954!4d77.664806!16s%2Fg%2F11myjyffq4?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
                   <span className="global-contact-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   </span>

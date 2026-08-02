@@ -91,7 +91,7 @@ function ContactPage({ onBack, onGoToAbout, navigateTo, initialMessage = "" }) {
                 </div>
               </a>
 
-              <a href="https://maps.google.com/?q=CHITTODE, Erode Dt., Tamilnadu - 638 102" target="_blank" rel="noopener noreferrer" className="cp-action-card">
+              <a href="https://www.google.com/maps/place/Laksha+Agro+Tech/@11.397954,77.664806,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba9690037cf9751:0x2bf9b98109891325!8m2!3d11.397954!4d77.664806!16s%2Fg%2F11myjyffq4?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="cp-action-card">
                 <div className="cp-action-icon">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
