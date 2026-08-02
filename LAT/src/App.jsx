@@ -15,7 +15,8 @@ import npkImg from "./assets/NPKFertilizers.png";
 import calciumImg from "./assets/CalciumFertilizers.png";
 
 // single banner image for the manufacturing section
-import techshaBannerImg from "./assets/2.png";
+import techshaBannerMobile from "./assets/2.jpeg";
+import techshaBannerDesktop from "./assets/3.jpeg";
 
 const categories = [
   { slug: "foliar", name: "Foliar Fertilizers", count: 6, image: foliarImg },
@@ -173,9 +174,9 @@ function App() {
   }, []);
 
   // Pushes a new history entry so the Back button can return here later.
-  const navigateTo = (targetPage, slug = null) => {
+  const navigateTo = (targetPage, slug = null, prefill = "") => {
     const scrollY = window.scrollY;
-    window.history.pushState({ page: targetPage, slug, scrollY }, "");
+    window.history.pushState({ page: targetPage, slug, scrollY, prefill }, "");
     setSelectedSlug(slug);
     setPage(targetPage);
     window.scrollTo(0, 0);
@@ -229,11 +230,13 @@ function App() {
     }
 
     if (page === "contact") {
+      const prefill = window.history.state?.prefill || "";
       return (
         <ContactPage
           onBack={goBackHome}
           onGoToAbout={() => navigateTo("about")}
           navigateTo={navigateTo}
+          initialMessage={prefill}
         />
       );
     }
@@ -243,9 +246,7 @@ function App() {
         {/* ---------- HERO ---------- */}
         <section
           className="hero"
-          style={{
-            backgroundImage: `linear-gradient(to right, rgba(8,20,10,0.92) 0%, rgba(8,20,10,0.75) 30%, rgba(8,20,10,0.25) 55%, rgba(8,20,10,0.05) 75%), linear-gradient(to bottom, rgba(10,20,10,0.35), rgba(10,20,10,0.1) 35%, rgba(8,18,10,0.8) 100%), url(${heroImg})`,
-          }}
+          style={{ '--hero-bg': `url(${heroImg})` }}
         >
           <div className="hero-body">
             <div className="hero-copy">
@@ -278,7 +279,12 @@ function App() {
                 <p className="card-value">+24% vs. Last Season</p>
               </div>
               <div className="float-card">
-                <p className="card-label">💧 Water Usage:</p>
+                <p className="card-label">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#7ed957" style={{ marginRight: '4px', verticalAlign: 'middle' }}>
+                    <path d="M12 21.5C17.2467 21.5 21.5 17.2467 21.5 12C21.5 8.5 12 2.5 12 2.5C12 2.5 2.5 8.5 2.5 12C2.5 17.2467 6.75329 21.5 12 21.5Z" />
+                  </svg>
+                  Water Usage:
+                </p>
                 <p className="card-value">Optimized</p>
               </div>
             </div>
@@ -288,9 +294,6 @@ function App() {
         {/* ---------- PRODUCT RANGE ---------- */}
         <section className="products" id="products">
           <h2 className="reveal reveal-up">Our Products for You</h2>
-          <div className="title-divider reveal reveal-up">
-            <span className="leaf-icon">🌿</span>
-          </div>
 
           <div
             className="coverflow-wrapper reveal reveal-up"
@@ -387,12 +390,11 @@ function App() {
 
         {/* ---------- WHY CHOOSE US ---------- */}
         <section className="why" id="about">
-          <div
+          <img
             className="why-art reveal reveal-left"
-            style={{ backgroundImage: `url(${aboutImg})` }}
-            role="img"
-            aria-label="Laksha Agro Tech smart farming illustration"
-          ></div>
+            src={aboutImg}
+            alt="Laksha Agro Tech smart farming illustration"
+          />
           <div className="why-copy reveal reveal-right">
             <h2>
               Why Choose
@@ -412,11 +414,14 @@ function App() {
         {/* ---------- MANUFACTURING PRODUCTS ---------- */}
         <section className="manufacturing" id="manufacturing">
           <div className="manufacturing-panel reveal reveal-up">
-            <img
-              src={techshaBannerImg}
-              alt="TECHSHA - Speciality Soluble Fertilizer"
-              className="manufacturing-banner"
-            />
+            <picture className="manufacturing-banner-wrapper">
+              <source media="(min-width: 768px)" srcSet={techshaBannerDesktop} />
+              <img
+                src={techshaBannerMobile}
+                alt="TECHSHA - Speciality Soluble Fertilizer"
+                className="manufacturing-banner"
+              />
+            </picture>
             <button
               className="manufacturing-arrow"
               onClick={() => navigateTo("techsha")}
@@ -436,13 +441,11 @@ function App() {
       <Header page={page} navigateTo={navigateTo} />
       {renderPage()}
 
-      {/* ==================== GLOBAL FOOTER (BANNER STYLE) ==================== */}
+      {/* ==================== GLOBAL FOOTER ==================== */}
       <section
         className="global-footer-container"
-        style={{ backgroundImage: `url(${footerImg})`, backgroundColor: '#182b1a' }}
+        style={{ backgroundColor: '#08140a' }}
       >
-        <div className="global-footer-overlay"></div>
-
         <div className="global-footer-card">
           <div className="global-footer-content">
             <div className="global-footer-brand">
@@ -452,41 +455,41 @@ function App() {
             <div className="global-footer-links-col">
               <h4>Quick Links</h4>
               <ul>
-                <li><span className="global-leaf">🌿</span><a href="#home" onClick={(e) => { e.preventDefault(); navigateTo("home"); }}>Home</a></li>
-                <li><span className="global-leaf">🌿</span><a href="#about" onClick={goToAbout}>About Us</a></li>
-                <li><span className="global-leaf">🌿</span><a href="#products" onClick={goToProducts}>Products</a></li>
-                <li><span className="global-leaf">🌿</span><a href="#techsha" onClick={goToTechsha}>Techsha</a></li>
-                <li><span className="global-leaf">🌿</span><a href="#contact" onClick={(e) => { e.preventDefault(); navigateTo("contact"); }}>Contact Us</a></li>
+                <li><span className="global-leaf"></span><a href="#home" onClick={(e) => { e.preventDefault(); navigateTo("home"); }}>Home</a></li>
+                <li><span className="global-leaf"></span><a href="#about" onClick={goToAbout}>About Us</a></li>
+                <li><span className="global-leaf"></span><a href="#products" onClick={goToProducts}>Products</a></li>
+                <li><span className="global-leaf"></span><a href="#techsha" onClick={goToTechsha}>Techsha</a></li>
+                <li><span className="global-leaf"></span><a href="#contact" onClick={(e) => { e.preventDefault(); navigateTo("contact"); }}>Contact Us</a></li>
               </ul>
             </div>
 
             <div className="global-footer-contact-col">
               <h4>Contact</h4>
               <div className="global-footer-contact-list">
-                <p>
+                <a href="tel:+91919600320783">
                   <span className="global-contact-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                   </span>
                   +91 919600320783
-                </p>
-                <p>
+                </a>
+                <a href="https://lakshaagrotech.com" target="_blank" rel="noopener noreferrer">
                   <span className="global-contact-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                   </span>
                   lakshaagrotech.com
-                </p>
-                <p>
+                </a>
+                <a href="mailto:lakshaagrotechsales@gmail.com">
                   <span className="global-contact-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                   </span>
                   lakshaagrotechsales@gmail.com
-                </p>
-                <p>
+                </a>
+                <a href="https://maps.google.com/?q=CHITTODE, Erode Dt., Tamilnadu - 638 102" target="_blank" rel="noopener noreferrer">
                   <span className="global-contact-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   </span>
                   CHITTODE, Erode Dt., Tamilnadu - 638 102
-                </p>
+                </a>
               </div>
             </div>
           </div>

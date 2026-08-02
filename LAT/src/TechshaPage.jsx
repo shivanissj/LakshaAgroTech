@@ -91,15 +91,13 @@ const comparison = [
    PRODUCT DETAIL MODAL
 ------------------------------------------------------------------ */
 
-function ProductModal({ product, onClose }) {
+function ProductModal({ product, onClose, navigateTo }) {
   if (!product) return null;
 
-  // Build a simple feature checklist out of whatever data the card has
   const features = [
     product.npk ? `Nutrient Content: ${product.npk}` : null,
     "High Purity Premium Quality",
     "Better Yield & Quality",
-    product.tag && !product.npk?.includes(product.tag) ? product.tag : null,
   ].filter(Boolean);
 
   return (
@@ -118,7 +116,6 @@ function ProductModal({ product, onClose }) {
         </div>
 
         <div className="tp-modal-content">
-          <span className="tp-modal-badge">{product.tag || "FERTILIZER"}</span>
           <h2 className="tp-modal-title">{product.grade}</h2>
           <p className="tp-modal-desc">
             {product.desc || "Premium quality fertilizer engineered for better crop yield and quality."}
@@ -132,7 +129,7 @@ function ProductModal({ product, onClose }) {
             ))}
           </ul>
 
-          <button className="tp-modal-cta">Enquire Now</button>
+          <button className="tp-modal-cta" onClick={() => navigateTo("contact", null, `I am interested in ${product.grade}. Please provide more details.`)}>Enquire Now</button>
         </div>
       </div>
     </div>
@@ -200,8 +197,17 @@ export default function TechshaPage({ navigateTo }) {
     <div className="tp-page">
 
       {/* ---------- HERO ---------- */}
-      <section className="tp-hero">
-        <div className="tp-hero-copy reveal reveal-left">
+      <section 
+        className="tp-hero"
+        style={{
+          backgroundImage: `linear-gradient(rgba(8, 20, 10, 0.7), rgba(8, 20, 10, 0.85)), url(${techshaHeroImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '60vh',
+          alignItems: 'center'
+        }}
+      >
+        <div className="tp-hero-copy reveal reveal-up">
           <h1>
             Nourishing Crops.
             <br />
@@ -211,25 +217,7 @@ export default function TechshaPage({ navigateTo }) {
             High quality water soluble and suspension fertilizers for all
             types of crops and growth stages.
           </p>
-          <div className="tp-hero-features">
-            <span><span className="tp-green-icon">✔</span> 100% Water Soluble</span>
-            <span><span className="tp-green-icon">✔</span> High Purity Premium Quality</span>
-            <span><span className="tp-green-icon">✔</span> Better Yield &amp; Quality</span>
-          </div>
-          <div className="tp-hero-actions">
-            <a href="#products" className="tp-btn tp-btn-primary">Explore Products →</a>
-            <a href="#brochure" className="tp-btn tp-btn-dark">Download Brochure ⬇</a>
-          </div>
-        </div>
 
-        <div className="tp-hero-art reveal reveal-right">
-          <div className="tp-hero-ring">
-            <img
-              src={techshaHeroImg}
-              alt="TECHSHA Fertilizer Range"
-              className="tp-hero-showcase"
-            />
-          </div>
         </div>
       </section>
 
@@ -257,7 +245,6 @@ export default function TechshaPage({ navigateTo }) {
       <section className="tp-section" id="products">
         <div className="tp-section-head reveal reveal-up">
           <h2>WATER SOLUBLE FERTILIZERS</h2>
-          <a href="#all-water-soluble" className="tp-view-all">View All Products →</a>
         </div>
         <div className="tp-grid tp-grid-4">
           {waterSoluble.map((item, i) => (
@@ -265,6 +252,7 @@ export default function TechshaPage({ navigateTo }) {
               className="tp-card reveal reveal-up reveal-stagger"
               style={{ "--reveal-delay": `${(i % 4) * 0.1}s` }}
               key={item.grade}
+              onClick={() => openModal(item)}
             >
               <div className="tp-card-thumb">
                 {item.img ? (
@@ -273,13 +261,9 @@ export default function TechshaPage({ navigateTo }) {
                   "TECHSHA"
                 )}
               </div>
-              <h3>{item.grade}</h3>
-              <p className="tp-card-npk">{item.npk}</p>
-              <p className="tp-card-desc">{item.desc}</p>
-              <p className="tp-card-meta"><span className="tp-green-icon">✔</span> Foliar Spray &nbsp;•&nbsp; <span className="tp-green-icon">✔</span> Fertigation</p>
-              <button className="tp-card-btn" onClick={() => openModal(item)}>
-                View Details
-              </button>
+              <div className="tp-card-body">
+                <h3>{item.grade} <span className="pg-arrow">→</span></h3>
+              </div>
             </div>
           ))}
         </div>
@@ -291,7 +275,6 @@ export default function TechshaPage({ navigateTo }) {
       <section className="tp-section tp-section-alt">
         <div className="tp-section-head reveal reveal-up">
           <h2>SUSPENSION FERTILIZERS</h2>
-          <a href="#all-suspension" className="tp-view-all">View All Products →</a>
         </div>
         <div className="tp-grid tp-grid-6">
           {suspensionFertilizers.map((item, i) => (
@@ -310,9 +293,9 @@ export default function TechshaPage({ navigateTo }) {
                   "TECHSHA"
                 )}
               </div>
-              <h4>{item.grade}</h4>
-              <p className="tp-card-npk">{item.npk}</p>
-              <p className="tp-bucket-tag">{item.tag}</p>
+              <div className="tp-card-body">
+                <h3>{item.grade} <span className="pg-arrow">→</span></h3>
+              </div>
             </div>
           ))}
         </div>
@@ -366,10 +349,9 @@ export default function TechshaPage({ navigateTo }) {
                   "TECHSHA"
                 )}
               </div>
-              <h3>{c.title}</h3>
-              <p className="tp-info-sub">{c.subtitle}</p>
-              {c.desc && <p className="tp-card-desc">{c.desc}</p>}
-              <p className="tp-card-meta">{c.extra}</p>
+              <div className="tp-card-body">
+                <h3>{c.title} <span className="pg-arrow">→</span></h3>
+              </div>
             </div>
           ))}
         </div>
@@ -407,8 +389,18 @@ export default function TechshaPage({ navigateTo }) {
       </section>
 
       {/* ---------- MANUFACTURING BANNER ---------- */}
-      <section className="tp-manufacturing" id="manufacturing">
-        <div className="tp-manufacturing-copy reveal reveal-left">
+      <section 
+        className="tp-manufacturing" 
+        id="manufacturing"
+        style={{
+          backgroundImage: `linear-gradient(rgba(8, 20, 10, 0.7), rgba(8, 20, 10, 0.85)), url(${techshaHeroImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '60vh',
+          alignItems: 'center'
+        }}
+      >
+        <div className="tp-manufacturing-copy reveal reveal-up">
           <span className="tp-manufacturing-label">OUR OWN MANUFACTURING PRODUCT</span>
           <h2 className="tp-manufacturing-title">TECHSHA</h2>
           <div className="tp-manufacturing-ribbon">
@@ -421,13 +413,10 @@ export default function TechshaPage({ navigateTo }) {
             <span><span className="tp-green-icon">✔</span> Better Yield &amp; Quality</span>
           </div>
         </div>
-        <div className="tp-manufacturing-art reveal reveal-right">
-          <img src={techshaHeroImg} alt="TECHSHA Fertilizer Range" className="tp-manufacturing-img" />
-        </div>
       </section>
 
       {/* ---------- PRODUCT DETAIL MODAL ---------- */}
-      <ProductModal product={selectedProduct} onClose={closeModal} />
+      <ProductModal product={selectedProduct} onClose={closeModal} navigateTo={navigateTo} />
     </div>
   );
 }

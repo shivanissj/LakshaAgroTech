@@ -39,7 +39,14 @@ export default function Header({ page, navigateTo }) {
         <a href="#contact" className={page === "contact" ? "active" : ""} onClick={(e) => handleNav(e, "contact")}>Contact Us</a>
       </nav>
 
-      <a href="#contact" className="nav-cta" onClick={(e) => handleNav(e, "contact")}>Contact details</a>
+      <a 
+        href="#contact" 
+        className="nav-cta" 
+        onClick={(e) => handleNav(e, "contact")}
+        style={{ visibility: page === "contact" ? "hidden" : "visible" }}
+      >
+        Contact details
+      </a>
 
       <button
         className={`menu-toggle ${menuOpen ? "open" : ""}`}

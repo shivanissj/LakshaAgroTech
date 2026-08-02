@@ -5,13 +5,13 @@ import navbarImg from "./assets/navbar.jpg";
 import footerBgImg from "./assets/Footer.png"; 
 import logoImg from "./assets/logo.png"; 
 import Header from "./Header";
-function ContactPage({ onBack, onGoToAbout, navigateTo }) {
+function ContactPage({ onBack, onGoToAbout, navigateTo, initialMessage = "" }) {
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
     company: "",
-    message: "",
+    message: initialMessage,
   });
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -91,7 +91,7 @@ function ContactPage({ onBack, onGoToAbout, navigateTo }) {
                 </div>
               </a>
 
-              <a href="#location" className="cp-action-card">
+              <a href="https://maps.google.com/?q=CHITTODE, Erode Dt., Tamilnadu - 638 102" target="_blank" rel="noopener noreferrer" className="cp-action-card">
                 <div className="cp-action-icon">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />

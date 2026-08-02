@@ -128,11 +128,19 @@ function ProductsPage({ onBack, initialSlug, navigateTo }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const activeCategory = categories.find((c) => c.slug === activeSlug);
+  const handleCategoryClick = (slug) => {
+    setActiveSlug(slug);
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        document.querySelector('.grid-area')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  };
+
+  const activeCategory = categories.find((c) => c.slug === activeSlug) || categories[0];
 
   return (
     <div className="products-page">
-
       <div className="breadcrumb">
         <button onClick={onBack} className="crumb-home">⌂</button>
         <span>/</span>
@@ -149,7 +157,7 @@ function ProductsPage({ onBack, initialSlug, navigateTo }) {
             <button
               key={cat.slug}
               className={`sidebar-item ${cat.slug === activeSlug ? "active" : ""}`}
-              onClick={() => setActiveSlug(cat.slug)}
+              onClick={() => handleCategoryClick(cat.slug)}
             >
               <span className="sidebar-icon">{cat.icon}</span>
               <span className="sidebar-text">
@@ -161,10 +169,9 @@ function ProductsPage({ onBack, initialSlug, navigateTo }) {
           ))}
 
           <div className="help-box">
-            <span className="help-icon">🌱</span>
             <h4>Need Help Choosing the Right Product?</h4>
             <p>Our experts are here to help you.</p>
-            <a href="#contact" className="btn btn-primary help-btn">Get Expert Advice →</a>
+            <a href="#contact" className="btn btn-primary help-btn" onClick={(e) => { e.preventDefault(); navigateTo("contact"); }}>Get Expert Advice →</a>
           </div>
         </aside>
 
@@ -179,7 +186,7 @@ function ProductsPage({ onBack, initialSlug, navigateTo }) {
 
           <div className="product-grid">
             {activeCategory.products.map((p) => (
-              <div className="pg-card" key={p.name}>
+              <div className="pg-card" key={p.name} onClick={() => setSelectedProduct(p)}>
                 <div className="pg-img">
                   {p.image ? (
                     <img src={p.image} alt={p.name} />
@@ -188,16 +195,7 @@ function ProductsPage({ onBack, initialSlug, navigateTo }) {
                   )}
                 </div>
                 <div className="pg-body">
-                  <span className="pg-tag">{activeCategory.name.replace(/s$/, "").toUpperCase()}</span>
-                  <h3>{p.name}</h3>
-                  <ul>
-                    {p.features.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
-                  <button className="btn btn-outline" onClick={() => setSelectedProduct(p)}>
-                    View Details →
-                  </button>
+                  <h3>{p.name} <span className="pg-arrow">→</span></h3>
                 </div>
               </div>
             ))}
@@ -260,7 +258,7 @@ function ProductsPage({ onBack, initialSlug, navigateTo }) {
                   <li key={f}>{f}</li>
                 ))}
               </ul>
-              <a href="#contact" className="btn btn-primary">Enquire Now</a>
+              <button className="btn btn-primary" onClick={() => navigateTo("contact", null, `I am interested in ${selectedProduct.name}. Please provide more details.`)}>Enquire Now</button>
             </div>
           </div>
         </div>

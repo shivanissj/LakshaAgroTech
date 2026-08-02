@@ -2,7 +2,7 @@
   background: #08140a;
   color: #eef2ec;
   min-height: 100vh;
-  padding-top: 120px;
+  padding-top: 100px;
   font-family: 'Poppins', sans-serif;
 }
 .products-page h1, .products-page h2, .products-page h3, .products-page h4 {
@@ -52,9 +52,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 20px 64px 0;
+  padding: 0 64px;
   font-size: 13px;
   color: #8fa389;
+  margin-bottom: 10px;
 }
 .crumb-home { background: none; border: none; color: #8fa389; cursor: pointer; font-size: 14px; }
 .crumb-active { color: #7ed957; }
@@ -62,7 +63,7 @@
 .products-layout {
   display: flex;
   gap: 32px;
-  padding: 24px 64px 20px;
+  padding: 0 64px 20px;
   align-items: flex-start;
 }
 
@@ -122,7 +123,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 .grid-icon { font-size: 32px; }
 .grid-heading h1 { font-size: 1.8rem; color: #fff; margin-bottom: 6px; }
@@ -130,8 +131,8 @@
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
   margin-bottom: 20px;
 }
 
@@ -139,19 +140,25 @@
   background: rgba(126, 217, 87, 0.05);
   border: 1px solid rgba(126, 217, 87, 0.18);
   border-radius: 14px;
-  padding: 18px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pg-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(126, 217, 87, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .pg-img {
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
+  width: 100%;
+  height: 240px;
+  display: block;
 }
-.pg-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.pg-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pg-img-placeholder {
   font-size: 12px;
   color: #4a5c46;
@@ -177,15 +184,48 @@
   width: fit-content;
 }
 
-.pg-body h3 { font-size: 17px; color: #fff; margin-bottom: 10px; }
+.pg-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.pg-body h3 {
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.pg-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8ed15a, #4f8a3a);
+  color: #0c1f10;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+}
+.pg-card:hover .pg-arrow {
+  transform: translateX(4px);
+}
 .pg-body ul { list-style: none; margin-bottom: 16px; }
 .pg-body li {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  font-size: 12.5px;
+  gap: 6px;
+  font-size: 11px;
   color: #c3d1bd;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   line-height: 1.4;
   text-align: left;
 }
@@ -208,12 +248,13 @@
   background: none;
   border: 1px solid #7ed957;
   color: #7ed957;
-  padding: 10px 16px;
+  padding: 6px 12px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   cursor: pointer;
   align-self: flex-start;
+  margin-top: auto;
   transition: background 0.2s ease, color 0.2s ease;
 }
 .btn-outline:hover { background: #7ed957; color: #0c1f10; }
@@ -324,7 +365,7 @@
   .products-layout { flex-direction: column; padding: 20px 24px 60px; }
   .sidebar { width: 100%; }
   .sidebar-item { flex-wrap: nowrap; }
-  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 }
 
 @media (max-width: 768px) {
@@ -354,7 +395,7 @@
 
   .grid-heading { flex-direction: column; }
   .grid-heading h1 { font-size: 1.4rem; }
-  .product-grid { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
 
   .trust-row-wrapper { padding: 0 20px; margin-bottom: 20px; }
   .trust-row { grid-template-columns: 1fr 1fr; padding: 20px; }
