@@ -49,14 +49,29 @@ function App() {
   const extendedCategories = [...categories, ...categories]; // 8 items for balanced 3D effect
 
   // ---------- AUTO-PLAY COVER FLOW ----------
-  useEffect(() => {
-    if (page !== "home") return;
-    const interval = setInterval(() => {
+  const autoPlayTimeout = useRef(null);
+
+  const startAutoPlay = (delay) => {
+    clearTimeout(autoPlayTimeout.current);
+    
+    let currentDelay = delay;
+    if (currentDelay === undefined) {
+      currentDelay = window.innerWidth <= 768 ? 4000 : 3000;
+    }
+
+    autoPlayTimeout.current = setTimeout(() => {
       if (!isHovered.current) {
         setActiveIndex((current) => (current - 1 + extendedCategories.length) % extendedCategories.length);
       }
-    }, 2000); // 2 second transition speed
-    return () => clearInterval(interval);
+      startAutoPlay();
+    }, currentDelay);
+  };
+
+  useEffect(() => {
+    if (page !== "home") return;
+    startAutoPlay();
+    return () => clearTimeout(autoPlayTimeout.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const [leftArrowClicked, setLeftArrowClicked] = useState(false);
@@ -66,12 +81,14 @@ function App() {
     setActiveIndex((current) => (current + 1) % extendedCategories.length);
     setRightArrowClicked(true);
     setTimeout(() => setRightArrowClicked(false), 3000);
+    startAutoPlay(6000); // Wait 6 seconds after user interaction
   };
 
   const handlePrev = () => {
     setActiveIndex((current) => (current - 1 + extendedCategories.length) % extendedCategories.length);
     setLeftArrowClicked(true);
     setTimeout(() => setLeftArrowClicked(false), 3000);
+    startAutoPlay(6000); // Wait 6 seconds after user interaction
   };
 
   const getCoverflowOffset = (index) => {
