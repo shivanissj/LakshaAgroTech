@@ -135,7 +135,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding: 4px;
+  padding: 20px 4px; /* increased top/bottom padding to prevent hover cutoff */
 }
 .tp-category-track::-webkit-scrollbar { display: none; }
 
@@ -548,14 +548,16 @@
   transition-delay: var(--reveal-delay, 0s);
 }
 
-/* Category cards + product cards hover lift, matching main site */
 .tp-category-card,
 .tp-card,
 .tp-bucket-card,
 .tp-info-card {
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-.tp-category-card:hover,
+.tp-category-card:hover {
+  transform: scale(1.05) translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+}
 .tp-card:hover,
 .tp-bucket-card:hover,
 .tp-info-card:hover {

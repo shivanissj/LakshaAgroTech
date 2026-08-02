@@ -170,6 +170,18 @@ export default function TechshaPage({ navigateTo }) {
     }
   };
 
+  const handleCategoryClick = (catName) => {
+    setActiveCat(activeCat === catName ? "All" : catName);
+    
+    setTimeout(() => {
+      const section = document.getElementById("products-section");
+      if (section) {
+        const y = section.getBoundingClientRect().top + window.scrollY - 80; // offset for nav if any
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   const openModal = (item) => setSelectedProduct(item);
   const closeModal = () => setSelectedProduct(null);
 
@@ -250,7 +262,7 @@ export default function TechshaPage({ navigateTo }) {
             <div
               className={`tp-category-card ${activeCat === cat.name ? 'selected' : ''}`}
               key={cat.name}
-              onClick={() => setActiveCat(activeCat === cat.name ? "All" : cat.name)}
+              onClick={() => handleCategoryClick(cat.name)}
             >
               <span className="tp-category-icon">{cat.icon}</span>
               <p className="tp-category-name">{cat.name}</p>
@@ -260,6 +272,8 @@ export default function TechshaPage({ navigateTo }) {
         </div>
         <button className="tp-scroll-btn tp-scroll-right" onClick={() => scrollCats(1)} aria-label="Next">›</button>
       </section>
+
+      <div id="products-section"></div>
 
       {/* ---------- WATER SOLUBLE FERTILIZERS ---------- */}
       {(activeCat === "All" || activeCat === "Water Soluble Fertilizers") && (
