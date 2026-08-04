@@ -25,7 +25,7 @@ export default function Header({ page, navigateTo }) {
 
   return (
     <header className="nav">
-      <div className="brand" onClick={(e) => handleNav(e, "home")} style={{ cursor: "pointer" }}>
+      <div className="brand">
         <img src={logoImg} alt="Laksha Agro Tech logo" className="brand-logo" />
       </div>
 
@@ -34,8 +34,7 @@ export default function Header({ page, navigateTo }) {
       <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
         <a href="#home" className={page === "home" ? "active" : ""} onClick={(e) => handleNav(e, "home")}>Home</a>
         <a href="#about" className={page === "about" ? "active" : ""} onClick={(e) => handleNav(e, "about")}>About Us</a>
-        <a href="#products" className={page === "products" ? "active" : ""} onClick={(e) => handleNav(e, "products")}>Products</a>
-        <a href="#techsha" className={page === "techsha" ? "active" : ""} onClick={(e) => handleNav(e, "techsha")}>Techsha</a>
+        <a href="#products" className={page === "products" ? "active" : ""} onClick={(e) => handleNav(e, "products")}>Our Products</a>
         <a href="#contact" className={page === "contact" ? "active" : ""} onClick={(e) => handleNav(e, "contact")}>Contact Us</a>
       </nav>
 

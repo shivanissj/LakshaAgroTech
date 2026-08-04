@@ -2,7 +2,7 @@
   background: #08140a;
   color: #eef2ec;
   min-height: 100vh;
-  padding-top: 100px;
+  padding-top: 130px;
   font-family: 'Poppins', sans-serif;
 }
 .products-page h1, .products-page h2, .products-page h3, .products-page h4 {
@@ -289,9 +289,64 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 9999;
   padding: 20px;
 }
+
+.modal-features-list {
+  margin-bottom: 20px;
+}
+
+.composition-table-container {
+  margin: 15px 0 25px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid rgba(126, 217, 87, 0.2);
+}
+
+.composition-table-container h4 {
+  color: #7ed957;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.composition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: #ddd;
+}
+
+.composition-table th,
+.composition-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.composition-table th {
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(126, 217, 87, 0.3);
+}
+
+.composition-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .composition-table {
+    font-size: 12px;
+  }
+  .composition-table th,
+  .composition-table td {
+    padding: 6px 8px;
+  }
+}
+
 
 .modal-box {
   background: #102413;

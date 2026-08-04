@@ -10,12 +10,6 @@ import techshaHeroImg from "./assets/heroooo2.png";
 import pinkBucketImg from "./assets/pinkbucket.png";
 import blueBucketImg from "./assets/bluebucket.png";
 import greenBucketImg from "./assets/greenbucket.png";
-import orangePackImg from "./assets/orangepack.png";
-import pinkBagImg from "./assets/pinkbag.png";
-import greenBagImg from "./assets/greenbag.png";
-import blueBagImg from "./assets/bluebag.png";
-import growfertImg from "./assets/growfert.png";
-import pottasiumImg from "./assets/pottasium.png";
 import t1 from "./assets/t1.png";
 import t2 from "./assets/t2.png";
 import t3 from "./assets/t3.png";
@@ -28,18 +22,45 @@ import t9 from "./assets/t9.png";
 import t10 from "./assets/t10.png";
 import t11 from "./assets/t11.png";
 import t12 from "./assets/t12.png";
-
+import or from "./assets/or.png";
+import lg from "./assets/lg.png";
 /* ------------------------------------------------------------------
    DATA
    (img: null means no product photo yet -> falls back to text thumb)
 ------------------------------------------------------------------ */
 
 const categories = [
-  { icon: "WS", name: "Water Soluble Fertilizers", count: 9 },
-  { icon: "SF", name: "Suspension Fertilizers", count: 6 },
-  { icon: "Zn", name: "Micronutrient Fertilizers", count: 1 },
-  { icon: "K", name: "Potassium Humate", count: 1 },
-  { icon: "B", name: "Boron 20%", count: 1 },
+  { 
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 3v4.4L4.8 13.6c-.6.8-.2 2.4.9 2.4h12.6c1.1 0 1.5-1.6.9-2.4L15 7.4V3"></path>
+        <path d="M14 3v4c0 .6.4 1 1 1h4"></path>
+        <path d="M9 3h6"></path>
+      </svg>
+    ), 
+    name: "Suspension Liquid Fertilizer", count: 6 
+  },
+  { 
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+        <path d="M2 22l10-10"></path>
+      </svg>
+    ), 
+    name: "Suspension Powder Fertilizer", count: 9 
+  },
+  { 
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <circle cx="12" cy="12" r="4"></circle>
+        <line x1="21.17" y1="8" x2="12" y2="8"></line>
+        <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+        <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+      </svg>
+    ), 
+    name: "Micronutrient Fertilizers", count: 3 
+  },
 ];
 
 const waterSoluble = [
@@ -55,12 +76,41 @@ const waterSoluble = [
 ];
 
 const suspensionFertilizers = [
-  { grade: "12-52-08 + TE", npk: "N 12% | P 52% | K 08%", tag: "High P & K Formula", img: blueBucketImg },
-  { grade: "12-00-60 + TE", npk: "N 12% | K 60%", tag: "High Potassium", img: greenBucketImg },
-  { grade: "00-52-34 + TE", npk: "P 52% | K 34%", tag: "High P & K", img: pinkBucketImg },
-  { grade: "10-20-50 + TE", npk: "N 10% | P 20% | K 50%", tag: "Potassium Rich", img: blueBucketImg },
-  { grade: "25-25-25 + TE", npk: "N 25% | P 25% | K 25%", tag: "Balanced Grade", img: greenBucketImg },
-  { grade: "00-37-47 + TE", npk: "P 37% | K 47%", tag: "Phosphorus & Potash", img: pinkBucketImg },
+  { 
+    grade: "25-25-25 + TE", 
+    npk: "N 25% | P 25% | K 25%", 
+    tag: "Balanced Grade", 
+    img: greenBucketImg,
+    desc: "NPK 25-25-25 is a balanced grade fertilizer for general crop growth. Its homogeneous suspension formula is suitable for application during all stages of plant growth. It promotes vigorous vegetative growth, balanced nutrient supply, and improved crop quality."
+  },
+  { 
+    grade: "10-50-20 + TE", 
+    npk: "N 10% | P 50% | K 20%", 
+    tag: "High Phosphorus", 
+    img: blueBucketImg,
+    desc: "NPK 10-50-20 is a high-phosphorus fertilizer that supports root development, early plant establishment, flowering, and fruit setting. The homogeneous suspension formulation ensures better nutrient availability throughout the crop growth stages."
+  },
+  { 
+    grade: "12-00-60 + TE", 
+    npk: "N 12% | P 0% | K 60%", 
+    tag: "Potassium Rich", 
+    img: or,
+    desc: "NPK 12-00-60 is a potassium-rich fertilizer specially formulated for fruit setting and fruit development. It is free from chlorine, sodium, and heavy metals. The product contains high sulfur content, which helps lower soil pH and improves nutrient availability, resulting in better crop performance."
+  },
+  { 
+    grade: "00-40-37 + TE", 
+    npk: "N 0% | P 40% | K 37%", 
+    tag: "Phosphorus & Potash", 
+    img: lg,
+    desc: "NPK 00-40-37 + TE is a premium source of phosphorus and potassium, formulated to support flowering, fruit setting, root development, and improved plant immunity. The balanced phosphorus and potash ratio enhances nutrient efficiency, promotes healthy crop growth, and improves yield quality."
+  },
+  { 
+    grade: "10-20-50 + TE", 
+    npk: "N 10% | P 20% | K 50%", 
+    tag: "Potassium Rich", 
+    img: pinkBucketImg,
+    desc: "NPK 10-20-50 is a premium potassium-rich suspension fertilizer designed to support fruit setting and fruit development. Manufactured using high-quality raw materials, it is free from chlorine, sodium, and heavy metals. Its high sulfur content helps reduce soil pH and enhances the availability of essential nutrients for improved crop performance."
+  }
 ];
 
 const microCards = [
@@ -92,11 +142,11 @@ const microCards = [
 ];
 
 const comparison = [
-  { grade: "20-20-20 + TE", n: 20, p: 20, k: 20, benefit: "Balanced growth for all crops", app: "Foliar Spray / Fertigation" },
-  { grade: "12-12-36 + TE", n: 12, p: 12, k: 36, benefit: "High Potassium for reproductive stage", app: "Foliar Spray / Fertigation" },
-  { grade: "10-20-50 + TE", n: 10, p: 20, k: 50, benefit: "Fruit setting & development", app: "Foliar Spray / Fertigation" },
-  { grade: "12-00-60 + TE", n: 12, p: "-", k: 60, benefit: "High Potassium for quality & yield", app: "Foliar Spray / Fertigation" },
-  { grade: "00-37-47 + TE", n: "-", p: 37, k: 47, benefit: "Improves flowering & fruit quality", app: "Foliar Spray / Fertigation" },
+  { grade: "25-25-25 + TE", n: 25, p: 25, k: 25, benefit: "Vigorous vegetative growth & balanced nutrient supply", app: "Foliar Spray / Fertigation" },
+  { grade: "10-50-20 + TE", n: 10, p: 50, k: 20, benefit: "Root development, flowering & fruit setting", app: "Foliar Spray / Fertigation" },
+  { grade: "12-00-60 + TE", n: 12, p: "-", k: 60, benefit: "Fruit setting & development (Free from Chlorine)", app: "Foliar Spray / Fertigation" },
+  { grade: "00-40-37 + TE", n: "-", p: 40, k: 37, benefit: "Flowering, fruit setting & plant immunity", app: "Foliar Spray / Fertigation" },
+  { grade: "10-20-50 + TE", n: 10, p: 20, k: 50, benefit: "Premium potassium for fruit setting & development", app: "Foliar Spray / Fertigation" },
 ];
 
 /* ------------------------------------------------------------------
@@ -152,7 +202,7 @@ function ProductModal({ product, onClose, navigateTo }) {
    COMPONENT
 ------------------------------------------------------------------ */
 
-export default function TechshaPage({ navigateTo }) {
+export default function TechshaPage({ navigateTo, hideHero }) {
   const catRef = useRef(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeCat, setActiveCat] = useState("All");
@@ -230,6 +280,7 @@ export default function TechshaPage({ navigateTo }) {
     <div className="tp-page">
 
       {/* ---------- HERO ---------- */}
+      {!hideHero && (
       <section 
         className="tp-hero"
         style={{
@@ -253,33 +304,41 @@ export default function TechshaPage({ navigateTo }) {
 
         </div>
       </section>
+      )}
 
-      {/* ---------- CATEGORY CAROUSEL ---------- */}
-      <section className="tp-categories">
-        <button className="tp-scroll-btn tp-scroll-left" onClick={() => scrollCats(-1)} aria-label="Previous">‹</button>
-        <div className="tp-category-track" ref={catRef}>
+      {/* ---------- MAIN LAYOUT ---------- */}
+      <div className="products-layout" style={{ marginTop: '20px' }}>
+        
+        {/* ---------- SIDEBAR ---------- */}
+        <div className="sidebar techsha-sidebar">
+          <h3 style={{ fontSize: '20px', color: '#fff', marginBottom: '4px', paddingLeft: '10px' }}>Product Range</h3>
           {categories.map((cat, i) => (
             <div
-              className={`tp-category-card ${activeCat === cat.name ? 'selected' : ''}`}
+              className={`sidebar-item ${activeCat === cat.name ? "active" : ""}`}
               key={cat.name}
               onClick={() => handleCategoryClick(cat.name)}
             >
-              <span className="tp-category-icon">{cat.icon}</span>
-              <p className="tp-category-name">{cat.name}</p>
-              <p className="tp-category-count">{cat.count} Product{cat.count > 1 ? "s" : ""}</p>
+              <div className="sidebar-icon">
+                {cat.icon}
+              </div>
+              <div className="sidebar-text">
+                <span className="sidebar-name">{cat.name}</span>
+                <span className="sidebar-count">{cat.count} Products</span>
+              </div>
+              <div className="sidebar-arrow">›</div>
             </div>
           ))}
         </div>
-        <button className="tp-scroll-btn tp-scroll-right" onClick={() => scrollCats(1)} aria-label="Next">›</button>
-      </section>
 
-      <div id="products-section"></div>
+        {/* ---------- PRODUCT GRID AREA ---------- */}
+        <div className="grid-area">
+          <div id="products-section"></div>
 
-      {/* ---------- WATER SOLUBLE FERTILIZERS ---------- */}
-      {(activeCat === "All" || activeCat === "Water Soluble Fertilizers") && (
+      {/* ---------- SUSPENSION POWDER FERTILIZERS ---------- */}
+      {(activeCat === "All" || activeCat === "Suspension Powder Fertilizer") && (
       <section className="tp-section" id="products">
         <div className="tp-section-head reveal reveal-up">
-          <h2>WATER SOLUBLE FERTILIZERS</h2>
+          <h2>SUSPENSION POWDER FERTILIZERS</h2>
         </div>
         <div className="tp-grid tp-grid-4">
           {waterSoluble.map((item, i) => (
@@ -305,11 +364,11 @@ export default function TechshaPage({ navigateTo }) {
       </section>
       )}
 
-      {/* ---------- SUSPENSION FERTILIZERS ---------- */}
-      {(activeCat === "All" || activeCat === "Suspension Fertilizers") && (
+      {/* ---------- SUSPENSION LIQUID FERTILIZERS ---------- */}
+      {(activeCat === "All" || activeCat === "Suspension Liquid Fertilizer") && (
       <section className="tp-section tp-section-alt">
         <div className="tp-section-head reveal reveal-up">
-          <h2>SUSPENSION FERTILIZERS</h2>
+          <h2>SUSPENSION LIQUID FERTILIZERS</h2>
         </div>
         <div className="tp-grid tp-grid-6">
           {suspensionFertilizers.map((item, i) => (
@@ -342,22 +401,16 @@ export default function TechshaPage({ navigateTo }) {
       )}
 
       {/* ---------- MICRONUTRIENT / HUMATE / BORON CARDS ---------- */}
-      {(activeCat === "All" || activeCat === "Micronutrient Fertilizers" || activeCat === "Potassium Humate" || activeCat === "Boron 20%") && (
+      {(activeCat === "All" || activeCat === "Micronutrient Fertilizers") && (
       <section className="tp-section">
         <div className="tp-section-head reveal reveal-up">
           <h2>
-            {activeCat === "All" ? "SPECIALTY PRODUCTS" : 
-             activeCat === "Micronutrient Fertilizers" ? "MICRONUTRIENT FERTILIZERS" : 
-             activeCat === "Potassium Humate" ? "POTASSIUM HUMATE" :
-             activeCat === "Boron 20%" ? "BORON 20%" : ""}
+            {activeCat === "All" ? "SPECIALTY PRODUCTS" : "MICRONUTRIENT FERTILIZERS"}
           </h2>
         </div>
         <div className="tp-grid tp-grid-3">
           {microCards.filter(c => 
-            activeCat === "All" || 
-            (activeCat === "Micronutrient Fertilizers" && c.title === "GROWFERT") ||
-            (activeCat === "Potassium Humate" && c.subtitle.includes("Super Pottasium")) ||
-            (activeCat === "Boron 20%" && c.title.includes("Boron 20%"))
+            activeCat === "All" || activeCat === "Micronutrient Fertilizers"
           ).map((c, i) => (
             <div
               className="tp-info-card reveal reveal-up reveal-stagger"
@@ -423,7 +476,11 @@ export default function TechshaPage({ navigateTo }) {
         </div>
       </section>
 
+      </div> {/* end grid-area */}
+      </div> {/* end products-layout */}
+
       {/* ---------- MANUFACTURING BANNER ---------- */}
+      {!hideHero && (
       <section 
         className="tp-manufacturing" 
         id="manufacturing"
@@ -449,6 +506,7 @@ export default function TechshaPage({ navigateTo }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* ---------- PRODUCT DETAIL MODAL ---------- */}
       <ProductModal product={selectedProduct} onClose={closeModal} navigateTo={navigateTo} />

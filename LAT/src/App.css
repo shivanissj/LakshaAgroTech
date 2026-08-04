@@ -56,10 +56,11 @@ h4 {
 }
 
 .brand-logo {
-  width: 96px;
-  height: 96px;
-  min-width: 96px;
+  width: 220px;
+  height: 110px;
+  min-width: 220px;
   object-fit: contain;
+  object-position: left;
   display: block;
 }
 
@@ -348,7 +349,8 @@ h4 {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-  transform: scale(1.04); /* Crop out baked-in lines on image edges */
+  transform: scale(1.04);
+  /* Crop out baked-in lines on image edges */
 }
 
 .coverflow-card:hover .card-img {
@@ -809,7 +811,7 @@ h4 {
 
   .why {
     flex-direction: column;
-    padding: 20px 20px 60px;
+    padding: 20px 20px 20px;
     gap: 32px;
     align-items: center;
   }
@@ -1268,17 +1270,17 @@ h4 {
   }
 
   .brand-logo {
-    width: 84px;
-    height: 84px;
-    min-width: 84px;
+    width: 200px;
+    height: 65px;
+    min-width: 200px;
   }
 }
 
 @media (max-width: 420px) {
   .brand-logo {
-    width: 72px;
-    height: 72px;
-    min-width: 72px;
+    width: 100px;
+    height: 70px;
+    min-width: 100px;
   }
 }
 
@@ -1517,8 +1519,8 @@ h4 {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: -40px;
-    /* Aggressive negative margin to pull Quick Links up closer */
+    margin-bottom: 20px;
+    /* Spacing between logo and Quick Links */
   }
 
   .global-footer-links-col,
@@ -1558,6 +1560,6 @@ h4 {
 
 @media (max-width: 768px) {
   .global-footer-content {
-    padding: 40px 30px;
+    padding: 20px 30px 40px;
   }
 }

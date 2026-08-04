@@ -6,6 +6,7 @@ import logoImg from "./assets/logo.png";
 import footerImg from "./assets/Footer.png";
 import ProductsPage from "./ProductsPage";
 import TechshaPage from "./TechshaPage";
+import NewProductsPage from "./NewProductsPage";
 import AboutPage from "./AboutPage";
 import ContactPage from "./ContactPage";
 import Header from "./Header";
@@ -14,15 +15,15 @@ import micronutrientImg from "./assets/MicronutrientFertilizers.png";
 import npkImg from "./assets/NPKFertilizers.png";
 import calciumImg from "./assets/CalciumFertilizers.png";
 
-// single banner image for the manufacturing section
-import techshaBannerMobile from "./assets/2.jpeg";
-import techshaBannerDesktop from "./assets/3.jpeg";
+import omexHero from "./assets/omex.png";
+import techshaHero from "./assets/techsha.png";
+import "./NewProductsPage.css";
 
-const categories = [
-  { slug: "foliar", name: "Foliar Fertilizers", count: 6, image: foliarImg },
-  { slug: "micronutrient", name: "Micronutrient Fertilizers", count: 2, image: micronutrientImg },
-  { slug: "npk", name: "NPK Fertilizers", count: 3, image: npkImg },
-  { slug: "secondary", name: "Secondary Nutrient Fertilizers", count: 1, image: calciumImg },
+// single banner image for the manufacturing section
+
+const mainProducts = [
+  { slug: "omex", name: "Omex", desc: "Explore our wide range of Omex foliar, micronutrient, and NPK fertilizers.", image: omexHero },
+  { slug: "techsha", name: "Techsha", desc: "Discover our specialty water soluble and suspension fertilizers.", image: techshaHero },
 ];
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
   const [activeIndex, setActiveIndex] = useState(0);
   const isHovered = useRef(false);
 
-  const extendedCategories = [...categories, ...categories]; // 8 items for balanced 3D effect
+  const extendedCategories = [...mainProducts, ...mainProducts, ...mainProducts, ...mainProducts]; // 8 items for balanced 3D effect
 
   // ---------- AUTO-PLAY COVER FLOW ----------
   const autoPlayTimeout = useRef(null);
@@ -55,13 +56,16 @@ function App() {
     clearTimeout(autoPlayTimeout.current);
     
     let currentDelay = delay;
+    const isClickDelay = delay === 6000;
+
     if (currentDelay === undefined) {
       currentDelay = window.innerWidth <= 768 ? 4000 : 3000;
     }
 
     autoPlayTimeout.current = setTimeout(() => {
-      if (!isHovered.current) {
-        setActiveIndex((current) => (current - 1 + extendedCategories.length) % extendedCategories.length);
+      // Resume transition if it's the 6s click delay, OR if not hovered
+      if (!isHovered.current || isClickDelay) {
+        setActiveIndex((current) => (current + 1) % extendedCategories.length);
       }
       startAutoPlay();
     }, currentDelay);
@@ -191,9 +195,9 @@ function App() {
   }, []);
 
   // Pushes a new history entry so the Back button can return here later.
-  const navigateTo = (targetPage, slug = null, prefill = "") => {
+  const navigateTo = (targetPage, slug = null, prefill = "", tab = null) => {
     const scrollY = window.scrollY;
-    window.history.pushState({ page: targetPage, slug, scrollY, prefill }, "");
+    window.history.pushState({ page: targetPage, slug, scrollY, prefill, tab }, "");
     setSelectedSlug(slug);
     setPage(targetPage);
     window.scrollTo(0, 0);
@@ -229,7 +233,8 @@ function App() {
 
   const renderPage = () => {
     if (page === "products") {
-      return <ProductsPage initialSlug={selectedSlug} onBack={goBackHome} navigateTo={navigateTo} />;
+      const tab = window.history.state?.tab || null;
+      return <NewProductsPage initialSlug={selectedSlug} initialTab={tab} onBack={goBackHome} navigateTo={navigateTo} />;
     }
 
     if (page === "techsha") {
@@ -310,7 +315,7 @@ function App() {
 
         {/* ---------- PRODUCT RANGE ---------- */}
         <section className="products" id="products">
-          <h2 className="reveal reveal-up">Our Products for You</h2>
+          <h2 className="reveal reveal-up">Our Products</h2>
 
           <div
             className="coverflow-wrapper reveal reveal-up"
@@ -355,28 +360,27 @@ function App() {
                     }}
                     onClick={() => {
                       if (isActive) {
-                        navigateTo("products", cat.slug);
+                        navigateTo("products", null, "", cat.slug);
                       } else {
                         setActiveIndex(i);
                       }
                     }}
                   >
-                    <div className="card-glass-panel">
-                      <div className="card-img-wrap">
-                        <img src={cat.image} alt={cat.name} className="card-img" />
+                    <div className="card-glass-panel" style={{ display: 'flex', flexDirection: 'column' }}>
+                      <div className="card-img-wrap" style={{ height: '200px', width: '100%', background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                        <img src={cat.image} alt={cat.name} className="card-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       </div>
-                      <div className="card-content">
-                        <h3>{cat.name.split(' ').map((word, idx, arr) =>
-                          idx === 0 ? <span key={idx}>{word}</span> : ` ${word}`
-                        )}</h3>
-                        <p className="card-desc">
-                          {cat.name.includes("Foliar") && "Essential nutrients absorbed through leaves for faster growth."}
-                          {cat.name.includes("NPK") && "Balanced nutrition for overall plant growth and yield."}
-                          {cat.name.includes("Micronutrient") && "Small in quantity, big in impact for soil health."}
-                          {cat.name.includes("Secondary") && "Stronger roots and cell structure for better yield."}
+                      <div className="card-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '1.5rem', flex: 1 }}>
+                        <h3 style={{ color: '#fff', fontSize: '1.5rem', marginBottom: '0.5rem' }}>{cat.name}</h3>
+                        <p className="card-desc" style={{ color: '#aaa', fontSize: '0.95rem', lineHeight: '1.5', flex: 1, marginBottom: '1.5rem' }}>
+                          {cat.desc}
                         </p>
-                        <div className="explore-link">
-                          <span className="arrow">→</span>
+                        <div className="explore-link" style={{ alignSelf: 'center' }}>
+                          <span className="arrow" style={{ 
+                            color: '#08140a', backgroundColor: '#7ed957', fontSize: '1.5rem', transition: 'all 0.3s ease',
+                            border: '2px solid #7ed957', borderRadius: '50%', width: '44px', height: '44px', 
+                            display: 'flex', alignItems: 'center', justifyContent: 'center'
+                          }}>→</span>
                         </div>
                       </div>
                     </div>
@@ -428,26 +432,7 @@ function App() {
           </div>
         </section>
 
-        {/* ---------- MANUFACTURING PRODUCTS ---------- */}
-        <section className="manufacturing" id="manufacturing">
-          <div className="manufacturing-panel reveal reveal-up">
-            <picture className="manufacturing-banner-wrapper">
-              <source media="(min-width: 768px)" srcSet={techshaBannerDesktop} />
-              <img
-                src={techshaBannerMobile}
-                alt="TECHSHA - Speciality Soluble Fertilizer"
-                className="manufacturing-banner"
-              />
-            </picture>
-            <button
-              className="manufacturing-arrow"
-              onClick={() => navigateTo("techsha")}
-              aria-label="View TECHSHA products"
-            >
-              →
-            </button>
-          </div>
-        </section>
+
 
       </>
     );
@@ -474,8 +459,7 @@ function App() {
               <ul>
                 <li><span className="global-leaf"></span><a href="#home" onClick={(e) => { e.preventDefault(); navigateTo("home"); }}>Home</a></li>
                 <li><span className="global-leaf"></span><a href="#about" onClick={goToAbout}>About Us</a></li>
-                <li><span className="global-leaf"></span><a href="#products" onClick={goToProducts}>Products</a></li>
-                <li><span className="global-leaf"></span><a href="#techsha" onClick={goToTechsha}>Techsha</a></li>
+                <li><span className="global-leaf"></span><a href="#products" onClick={goToProducts}>Our Products</a></li>
                 <li><span className="global-leaf"></span><a href="#contact" onClick={(e) => { e.preventDefault(); navigateTo("contact"); }}>Contact Us</a></li>
               </ul>
             </div>
